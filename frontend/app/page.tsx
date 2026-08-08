@@ -24,7 +24,7 @@ export default function HomePage() {
 
   useEffect(() => {
     setIsVisible(true)
-    
+
     const handleScroll = () => {
       const sections = ['home', 'about', 'projects', 'contact']
       const scrollPosition = window.scrollY + 100
@@ -40,16 +40,9 @@ export default function HomePage() {
         }
       }
 
-      // Show menu when scrolling stops
       setIsScrolling(true)
       setShowMenu(false)
-      
-      // Clear existing timeout
-      if (scrollTimeoutRef.current) {
-        clearTimeout(scrollTimeoutRef.current)
-      }
-      
-      // Set new timeout to detect when scrolling stops
+      if (scrollTimeoutRef.current) clearTimeout(scrollTimeoutRef.current)
       scrollTimeoutRef.current = setTimeout(() => {
         setIsScrolling(false)
         setShowMenu(true)
@@ -59,58 +52,68 @@ export default function HomePage() {
     window.addEventListener('scroll', handleScroll)
     return () => {
       window.removeEventListener('scroll', handleScroll)
-      if (scrollTimeoutRef.current) {
-        clearTimeout(scrollTimeoutRef.current)
-      }
+      if (scrollTimeoutRef.current) clearTimeout(scrollTimeoutRef.current)
     }
   }, [])
 
   const navItems = [
-    { id: 'home', label: 'Home', icon: '🏠' },
-    { id: 'about', label: 'About', icon: '👨‍💻' },
-    { id: 'projects', label: 'Projects', icon: '🚀' },
-    { id: 'contact', label: 'Contact', icon: '📧' },
+    { id: 'home', label: 'Home', icon: '⌂' },
+    { id: 'about', label: 'About', icon: '◉' },
+    { id: 'projects', label: 'Projects', icon: '✦' },
+    { id: 'contact', label: 'Contact', icon: '◌' },
   ]
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-purple-50 via-pink-50 to-blue-50 dark:from-purple-950 dark:via-pink-950 dark:to-blue-950 transition-colors duration-500">
-      {/* Interactive Background Layers */}
+    <div className="min-h-screen bg-[#020617] text-slate-100 transition-colors duration-500 selection:bg-cyan-400/30">
+      {/* Cosmic atmosphere */}
       <BackgroundBlobs />
       <ParticleBackground />
       <CursorTrail />
       <ScrollProgress />
-      
-      {/* Unique Floating Navigation - Appears when scrolling stops */}
+
+      {/* Subtle star-field overlay */}
+      <div
+        aria-hidden="true"
+        className="pointer-events-none fixed inset-0 z-0 opacity-60"
+        style={{
+          backgroundImage: 'radial-gradient(circle at 20% 30%, rgba(255,255,255,.75) 0 1px, transparent 1.5px), radial-gradient(circle at 70% 65%, rgba(103,232,249,.6) 0 1px, transparent 1.5px), radial-gradient(circle at 42% 80%, rgba(196,181,253,.5) 0 1px, transparent 1.5px)',
+          backgroundSize: '170px 170px, 230px 230px, 310px 310px',
+        }}
+      />
+
+      {/* Floating orbital navigation */}
       <AnimatePresence>
         {showMenu && (
           <motion.div
             initial={{ opacity: 0, y: -100, scale: 0.8 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: -100, scale: 0.8 }}
-            transition={{ type: "spring", stiffness: 300, damping: 25 }}
-            className="fixed top-8 left-1/2 transform -translate-x-1/2 z-50"
+            transition={{ type: 'spring', stiffness: 300, damping: 25 }}
+            className="fixed top-6 left-1/2 -translate-x-1/2 z-50"
           >
-            <div className="flex items-center gap-4 p-4 bg-white/90 dark:bg-black/90 backdrop-blur-xl rounded-2xl border border-purple-500/30 shadow-2xl">
-              <div className="flex items-center gap-2">
-                <div className="w-3 h-3 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full animate-pulse"></div>
-                <div className="w-3 h-3 bg-gradient-to-r from-pink-500 to-blue-500 rounded-full animate-pulse delay-75"></div>
-                <div className="w-3 h-3 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full animate-pulse delay-150"></div>
+            <div className="flex items-center gap-4 p-3 bg-slate-950/75 backdrop-blur-2xl rounded-2xl border border-cyan-300/15 shadow-[0_0_45px_rgba(34,211,238,.08)]">
+              <div className="flex items-center gap-1.5 px-2" aria-label="online">
+                <span className="w-2 h-2 rounded-full bg-cyan-300 shadow-[0_0_10px_rgba(103,232,249,.9)] animate-pulse" />
+                <span className="w-2 h-2 rounded-full bg-violet-400 shadow-[0_0_10px_rgba(167,139,250,.8)] animate-pulse" />
+                <span className="w-2 h-2 rounded-full bg-sky-400 shadow-[0_0_10px_rgba(56,189,248,.8)] animate-pulse" />
               </div>
-              
-              <div className="flex gap-6">
+
+              <div className="h-6 w-px bg-white/10" />
+
+              <div className="flex gap-1">
                 {navItems.map((item) => (
                   <motion.a
                     key={item.id}
                     href={`#${item.id}`}
                     className={`flex items-center gap-2 px-4 py-2 rounded-xl transition-all duration-300 ${
                       activeSection === item.id
-                        ? 'bg-gradient-to-r from-purple-500 to-pink-500 text-white shadow-lg'
-                        : 'text-gray-700 dark:text-gray-300 hover:bg-purple-100 dark:hover:bg-purple-900/50'
+                        ? 'bg-gradient-to-r from-cyan-400/20 via-sky-400/15 to-violet-400/20 text-cyan-200 border border-cyan-300/20 shadow-[0_0_20px_rgba(34,211,238,.10)]'
+                        : 'text-slate-300 hover:text-white hover:bg-white/5'
                     }`}
                     whileHover={{ scale: 1.05, y: -2 }}
                     whileTap={{ scale: 0.95 }}
                   >
-                    <span className="text-lg">{item.icon}</span>
+                    <span className="text-cyan-300">{item.icon}</span>
                     <span className="font-medium">{item.label}</span>
                   </motion.a>
                 ))}
@@ -120,55 +123,26 @@ export default function HomePage() {
         )}
       </AnimatePresence>
 
-      {/* Interactive Elements */}
       <DraggableStatus />
       <SoundToggle />
 
-      {/* Main Content */}
       <main className="relative z-10">
         <AnimatePresence>
           {isVisible && (
             <>
-              <motion.section
-                id="home"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0 }}
-                transition={{ duration: 0.8 }}
-              >
+              <motion.section id="home" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.8 }}>
                 <Hero />
               </motion.section>
 
-              <motion.section
-                id="about"
-                initial={{ opacity: 0, y: 50 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.8 }}
-                className="min-h-screen flex items-center justify-center px-6 py-20"
-              >
+              <motion.section id="about" initial={{ opacity: 0, y: 50 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.8 }} className="min-h-screen flex items-center justify-center px-6 py-20">
                 <About />
               </motion.section>
 
-              <motion.section
-                id="projects"
-                initial={{ opacity: 0, y: 50 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.8 }}
-                className="min-h-screen px-6 py-20"
-              >
+              <motion.section id="projects" initial={{ opacity: 0, y: 50 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.8 }} className="min-h-screen px-6 py-20">
                 <ProjectsSection />
               </motion.section>
 
-              <motion.section
-                id="contact"
-                initial={{ opacity: 0, y: 50 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.8 }}
-                className="min-h-screen flex items-center justify-center px-6 py-20"
-              >
+              <motion.section id="contact" initial={{ opacity: 0, y: 50 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.8 }} className="min-h-screen flex items-center justify-center px-6 py-20">
                 <Contact />
               </motion.section>
             </>
@@ -176,10 +150,10 @@ export default function HomePage() {
         </AnimatePresence>
       </main>
 
-      {/* Floating Action Button */}
       <motion.button
         onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-        className="fixed bottom-8 right-8 z-40 p-4 bg-primary-500 text-white rounded-full shadow-lg hover-lift"
+        aria-label="Return to top"
+        className="fixed bottom-8 right-8 z-40 p-4 bg-slate-950/80 text-cyan-300 border border-cyan-300/20 rounded-full shadow-[0_0_25px_rgba(34,211,238,.12)] hover-lift backdrop-blur-xl"
         initial={{ opacity: 0, scale: 0 }}
         animate={{ opacity: activeSection !== 'home' ? 1 : 0, scale: activeSection !== 'home' ? 1 : 0 }}
         whileHover={{ scale: 1.1 }}
