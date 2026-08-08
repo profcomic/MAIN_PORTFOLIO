@@ -1,55 +1,20 @@
 "use client"
 import { useState } from 'react'
 import { motion } from 'framer-motion'
-import { Mail, User, MessageSquare, Send, CheckCircle, Radio } from 'lucide-react'
+import { Mail, User, MessageSquare, Send, CheckCircle } from 'lucide-react'
 
 export default function ContactForm() {
   const [formData, setFormData] = useState({ name: '', email: '', subject: '', message: '' })
   const [status, setStatus] = useState<'idle' | 'sending' | 'success' | 'error'>('idle')
   const [errors, setErrors] = useState<Record<string, string>>({})
-
-  const validateForm = () => {
-    const next: Record<string, string> = {}
-    if (!formData.name.trim()) next.name = 'Name is required'
-    if (!formData.email.trim()) next.email = 'Email is required'
-    else if (!/^\S+@\S+\.\S+$/.test(formData.email)) next.email = 'Enter a valid email'
-    if (!formData.subject.trim()) next.subject = 'Subject is required'
-    if (!formData.message.trim()) next.message = 'Message is required'
-    else if (formData.message.length < 10) next.message = 'Message must be at least 10 characters'
-    setErrors(next)
-    return Object.keys(next).length === 0
-  }
-
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault()
-    if (!validateForm()) return
-    setStatus('sending')
-    try {
-      const response = await fetch('/api/contact', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(formData) })
-      if (response.ok) { setStatus('success'); setFormData({ name: '', email: '', subject: '', message: '' }); setErrors({}) } else setStatus('error')
-    } catch (error) { console.error('Form submission error:', error); setStatus('error') }
-    setTimeout(() => setStatus('idle'), 3000)
-  }
-
-  const inputClass = (field: string) => `w-full px-4 py-3 rounded-xl bg-slate-950/60 border ${errors[field] ? 'border-rose-400/70' : 'border-white/10'} text-slate-100 focus:border-cyan-300/60 focus:outline-none focus:ring-2 focus:ring-cyan-300/10 transition-all placeholder:text-slate-600`
-
-  return (
-    <div className="space-panel p-7 md:p-8">
-      <div className="flex items-center justify-between mb-7"><div><p className="text-[10px] font-mono tracking-[.2em] text-cyan-300 mb-2">TRANSMISSION CONSOLE</p><h3 className="text-2xl font-bold text-white">Send A Message</h3></div><Radio className="w-6 h-6 text-cyan-300 animate-pulse" /></div>
-      <form onSubmit={handleSubmit} className="space-y-5">
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-          <div><label className="flex items-center gap-2 text-xs font-mono text-slate-400 mb-2"><User className="w-3.5 h-3.5" /> NAME</label><input type="text" name="name" value={formData.name} onChange={e => setFormData(p => ({ ...p, name: e.target.value }))} placeholder="Your name" className={inputClass('name')} />{errors.name && <p className="text-rose-400 text-xs mt-1">{errors.name}</p>}</div>
-          <div><label className="flex items-center gap-2 text-xs font-mono text-slate-400 mb-2"><Mail className="w-3.5 h-3.5" /> EMAIL</label><input type="email" name="email" value={formData.email} onChange={e => setFormData(p => ({ ...p, email: e.target.value }))} placeholder="you@example.com" className={inputClass('email')} />{errors.email && <p className="text-rose-400 text-xs mt-1">{errors.email}</p>}</div>
-        </div>
-        <div><label className="text-xs font-mono text-slate-400 mb-2 block">SUBJECT</label><input type="text" name="subject" value={formData.subject} onChange={e => setFormData(p => ({ ...p, subject: e.target.value }))} placeholder="Project inquiry" className={inputClass('subject')} />{errors.subject && <p className="text-rose-400 text-xs mt-1">{errors.subject}</p>}</div>
-        <div><label className="flex items-center gap-2 text-xs font-mono text-slate-400 mb-2"><MessageSquare className="w-3.5 h-3.5" /> MESSAGE</label><textarea name="message" value={formData.message} onChange={e => setFormData(p => ({ ...p, message: e.target.value }))} placeholder="Tell me about your mission..." rows={6} className={`${inputClass('message')} resize-none`} />{errors.message && <p className="text-rose-400 text-xs mt-1">{errors.message}</p>}</div>
-        <motion.button type="submit" disabled={status !== 'idle'} whileHover={status === 'idle' ? { scale: 1.01 } : {}} whileTap={status === 'idle' ? { scale: .99 } : {}} className={`w-full py-4 rounded-xl font-bold flex items-center justify-center gap-2 ${status === 'idle' ? 'bg-gradient-to-r from-cyan-300 to-sky-500 text-slate-950 shadow-[0_0_25px_rgba(34,211,238,.14)]' : status === 'sending' ? 'bg-slate-800 text-slate-500' : status === 'success' ? 'bg-emerald-400 text-slate-950' : 'bg-rose-500 text-white'}`}>
-          {status === 'idle' && <><Send className="w-5 h-5" /> Transmit Message</>}
-          {status === 'sending' && <><div className="w-5 h-5 border-2 border-slate-500 border-t-cyan-300 rounded-full animate-spin" /> Transmitting...</>}
-          {status === 'success' && <><CheckCircle className="w-5 h-5" /> Transmission Received</>}
-          {status === 'error' && <>Transmission Failed — Retry</>}
-        </motion.button>
-      </form>
-    </div>
-  )
+  const validateForm = () => { const e: Record<string,string> = {}; if (!formData.name.trim()) e.name='Name is required'; if (!formData.email.trim()) e.email='Email is required'; else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) e.email='Please enter a valid email'; if (!formData.subject.trim()) e.subject='Subject is required'; if (!formData.message.trim()) e.message='Message is required'; else if (formData.message.length<10) e.message='Message must be at least 10 characters'; setErrors(e); return !Object.keys(e).length }
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => { e.preventDefault(); if (!validateForm()) return; setStatus('sending'); try { const r=await fetch('/api/contact',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(formData)}); if(r.ok){setStatus('success');setFormData({name:'',email:'',subject:'',message:''});setErrors({})}else setStatus('error')}catch(err){console.error('Form submission error:',err);setStatus('error')} setTimeout(()=>setStatus('idle'),3000) }
+  const handleInputChange=(e:React.ChangeEvent<HTMLInputElement|HTMLTextAreaElement>)=>{const{name,value}=e.target;setFormData(p=>({...p,[name]:value}));if(errors[name])setErrors(p=>({...p,[name]:''}))}
+  const input=(field:string)=>`w-full px-4 py-3 rounded-lg bg-slate-950/60 border ${errors[field]?'border-red-500':'border-white/10'} text-slate-100 focus:border-cyan-400 focus:outline-none transition-all placeholder-slate-500`
+  return <div className="space-panel rounded-xl p-8 border border-white/10"><h3 className="text-2xl font-semibold mb-6 text-white">Send Me a Message</h3><form onSubmit={handleSubmit} className="space-y-6">
+    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4"><div className="space-y-2"><label className="flex items-center gap-2 text-sm font-medium text-slate-300"><User className="w-4 h-4"/>Name</label><input type="text" name="name" value={formData.name} onChange={handleInputChange} placeholder="Professor Comic" className={input('name')}/>{errors.name&&<p className="text-red-400 text-sm">{errors.name}</p>}</div><div className="space-y-2"><label className="flex items-center gap-2 text-sm font-medium text-slate-300"><Mail className="w-4 h-4"/>Email</label><input type="email" name="email" value={formData.email} onChange={handleInputChange} placeholder="professorcomic1@gmail.com" className={input('email')}/>{errors.email&&<p className="text-red-400 text-sm">{errors.email}</p>}</div></div>
+    <div className="space-y-2"><label className="text-sm font-medium text-slate-300">Subject</label><input type="text" name="subject" value={formData.subject} onChange={handleInputChange} placeholder="Project Inquiry" className={input('subject')}/>{errors.subject&&<p className="text-red-400 text-sm">{errors.subject}</p>}</div>
+    <div className="space-y-2"><label className="flex items-center gap-2 text-sm font-medium text-slate-300"><MessageSquare className="w-4 h-4"/>Message</label><textarea name="message" value={formData.message} onChange={handleInputChange} placeholder="Tell me about your project..." rows={5} className={`${input('message')} resize-none`}/>{errors.message&&<p className="text-red-400 text-sm">{errors.message}</p>}</div>
+    <motion.button type="submit" disabled={status!=='idle'} className={`w-full py-4 rounded-lg font-medium transition-all flex items-center justify-center gap-2 ${status==='idle'?'bg-gradient-to-r from-cyan-400 to-violet-500 text-slate-950 shadow-lg':status==='sending'?'bg-slate-700 text-slate-500 cursor-not-allowed':status==='success'?'bg-green-500 text-white':'bg-red-500 text-white'}`} whileHover={status==='idle'?{scale:1.02}:{}} whileTap={status==='idle'?{scale:.98}:{}}>{status==='idle'&&<><Send className="w-5 h-5"/>Send Message</>}{status==='sending'&&<><div className="w-5 h-5 border-2 border-slate-500 border-t-transparent rounded-full animate-spin"/>Sending...</>}{status==='success'&&<><CheckCircle className="w-5 h-5"/>Message Sent Successfully!</>}{status==='error'&&<span className="text-red-200">Failed to send message. Please try again.</span>}</motion.button>
+  </form></div>
 }
