@@ -6,77 +6,108 @@
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
-    --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
-    --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
-    --primary: 221.2 83.2% 53.3%;
-    --primary-foreground: 210 40% 98%;
-    --secondary: 210 40% 96%;
-    --secondary-foreground: 222.2 84% 4.9%;
-    --muted: 210 40% 96%;
-    --muted-foreground: 215.4 16.3% 46.9%;
-    --accent: 210 40% 96%;
-    --accent-foreground: 222.2 84% 4.9%;
-    --destructive: 0 84.2% 60.2%;
+    --background: 230 60% 4%;
+    --foreground: 210 40% 98%;
+    --card: 230 45% 8%;
+    --card-foreground: 210 40% 98%;
+    --popover: 230 45% 8%;
+    --popover-foreground: 210 40% 98%;
+    --primary: 191 100% 50%;
+    --primary-foreground: 230 60% 4%;
+    --secondary: 260 55% 16%;
+    --secondary-foreground: 210 40% 98%;
+    --muted: 230 25% 16%;
+    --muted-foreground: 215 20% 70%;
+    --accent: 278 90% 65%;
+    --accent-foreground: 210 40% 98%;
+    --destructive: 0 84% 60%;
     --destructive-foreground: 210 40% 98%;
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 221.2 83.2% 53.3%;
-    --radius: 0.5rem;
+    --border: 220 35% 22%;
+    --input: 220 35% 18%;
+    --ring: 191 100% 50%;
+    --radius: 0.75rem;
   }
 
   .dark {
-    --background: 222.2 84% 4.9%;
+    --background: 230 60% 4%;
     --foreground: 210 40% 98%;
-    --card: 222.2 84% 4.9%;
+    --card: 230 45% 8%;
     --card-foreground: 210 40% 98%;
-    --popover: 222.2 84% 4.9%;
+    --popover: 230 45% 8%;
     --popover-foreground: 210 40% 98%;
-    --primary: 217.2 91.2% 59.8%;
-    --primary-foreground: 222.2 84% 4.9%;
-    --secondary: 217.2 32.6% 17.5%;
+    --primary: 191 100% 50%;
+    --primary-foreground: 230 60% 4%;
+    --secondary: 260 55% 16%;
     --secondary-foreground: 210 40% 98%;
-    --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
-    --accent: 217.2 32.6% 17.5%;
+    --muted: 230 25% 16%;
+    --muted-foreground: 215 20% 70%;
+    --accent: 278 90% 65%;
     --accent-foreground: 210 40% 98%;
-    --destructive: 0 62.8% 30.6%;
+    --destructive: 0 62% 35%;
     --destructive-foreground: 210 40% 98%;
-    --border: 217.2 32.6% 17.5%;
-    --input: 217.2 32.6% 17.5%;
-    --ring: 224.3 76.3% 94.1%;
+    --border: 220 35% 22%;
+    --input: 220 35% 18%;
+    --ring: 191 100% 50%;
   }
 }
 
 @layer base {
   * {
-    @apply border-gray-200;
+    @apply border-white/10;
   }
+
+  html {
+    scroll-behavior: smooth;
+    background: #020617;
+  }
+
   body {
-    @apply bg-white text-gray-900;
+    @apply text-slate-100;
     font-family: 'Inter', sans-serif;
+    background:
+      radial-gradient(circle at 15% 20%, rgba(56, 189, 248, 0.09), transparent 28%),
+      radial-gradient(circle at 85% 25%, rgba(168, 85, 247, 0.10), transparent 30%),
+      radial-gradient(circle at 50% 85%, rgba(37, 99, 235, 0.08), transparent 35%),
+      #020617;
+    min-height: 100vh;
+    overflow-x: hidden;
   }
-  .dark body {
-    @apply bg-gray-950 text-gray-100;
-  }
+
   .font-mono {
     font-family: 'JetBrains Mono', monospace;
+  }
+
+  ::selection {
+    background: rgba(34, 211, 238, 0.28);
+    color: white;
   }
 }
 
 @layer components {
   .glass-morphism {
-    @apply bg-white/10 backdrop-blur-md border border-white/20;
+    @apply bg-slate-950/45 backdrop-blur-xl border border-cyan-300/10;
+    box-shadow: inset 0 1px 0 rgba(255,255,255,.05), 0 18px 60px rgba(0,0,0,.28);
   }
-  
+
   .gradient-text {
-    @apply bg-gradient-to-r from-blue-500 to-cyan-500 bg-clip-text text-transparent;
+    @apply bg-gradient-to-r from-cyan-300 via-sky-400 to-fuchsia-400 bg-clip-text text-transparent;
   }
-  
+
   .hover-lift {
-    @apply transition-all duration-300 hover:transform hover:-translate-y-2 hover:shadow-xl;
+    @apply transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl;
   }
+
+  .space-panel {
+    @apply bg-slate-950/55 backdrop-blur-2xl border border-white/10 rounded-2xl;
+    box-shadow: 0 0 40px rgba(56, 189, 248, .06), inset 0 1px 0 rgba(255,255,255,.04);
+  }
+
+  .space-glow {
+    box-shadow: 0 0 18px rgba(34, 211, 238, .20), 0 0 55px rgba(168, 85, 247, .10);
+  }
+}
+
+@keyframes star-drift {
+  from { transform: translate3d(0, 0, 0); }
+  to { transform: translate3d(-40px, 30px, 0); }
 }
