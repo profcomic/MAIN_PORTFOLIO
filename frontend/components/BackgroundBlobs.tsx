@@ -3,99 +3,19 @@
 import { motion } from 'framer-motion'
 import { useEffect, useState } from 'react'
 
-export default function BackgroundBlobs() {
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 })
-  const [isClient, setIsClient] = useState(false)
-
-  useEffect(() => {
-    setIsClient(true)
-    const handleMouseMove = (e: MouseEvent) => {
-      setMousePosition({ x: e.clientX, y: e.clientY })
-    }
-
-    window.addEventListener('mousemove', handleMouseMove)
-    return () => window.removeEventListener('mousemove', handleMouseMove)
-  }, [])
-
-  return (
-    <div className="fixed inset-0 -z-10 overflow-hidden bg-gradient-to-br from-purple-50 via-pink-50 to-blue-50 dark:from-purple-950 dark:via-pink-950 dark:to-blue-950 transition-colors duration-500">
-      {/* Animated gradient orbs */}
-      <motion.div
-        className="absolute -top-[10%] -left-[10%] w-[40%] h-[40%] rounded-full bg-gradient-to-br from-purple-500/30 to-pink-500/20 blur-[120px]"
-        animate={{
-          x: isClient ? mousePosition.x * 0.02 : 0,
-          y: isClient ? mousePosition.y * 0.02 : 0,
-        }}
-        transition={{ type: "spring", stiffness: 50, damping: 20 }}
-      />
-      
-      <motion.div
-        className="absolute -bottom-[10%] -right-[10%] w-[40%] h-[40%] rounded-full bg-gradient-to-tl from-pink-500/30 to-blue-500/20 blur-[120px]"
-        animate={{
-          x: isClient ? mousePosition.x * -0.02 : 0,
-          y: isClient ? mousePosition.y * -0.02 : 0,
-        }}
-        transition={{ type: "spring", stiffness: 50, damping: 20 }}
-      />
-
-      <motion.div
-        className="absolute top-[30%] left-[60%] w-[30%] h-[30%] rounded-full bg-gradient-to-bl from-blue-500/20 to-purple-500/20 blur-[100px]"
-        animate={{
-          x: isClient ? mousePosition.x * 0.03 : 0,
-          y: isClient ? mousePosition.y * 0.03 : 0,
-        }}
-        transition={{ type: "spring", stiffness: 30, damping: 25 }}
-      />
-
-      <motion.div
-        className="absolute bottom-[20%] left-[20%] w-[25%] h-[25%] rounded-full bg-gradient-to-tr from-purple-500/20 to-pink-500/20 blur-[80px]"
-        animate={{
-          x: isClient ? mousePosition.x * -0.025 : 0,
-          y: isClient ? mousePosition.y * -0.025 : 0,
-        }}
-        transition={{ type: "spring", stiffness: 40, damping: 22 }}
-      />
-      
-      {/* Subtle mesh grid pattern */}
-      <div className="absolute inset-0 opacity-30 dark:opacity-20">
-        <div 
-          className="w-full h-full"
-          style={{
-            backgroundImage: `
-              radial-gradient(circle at 25% 25%, #a855f7 1px, transparent 1px),
-              radial-gradient(circle at 75% 75%, #ec4899 1px, transparent 1px),
-              radial-gradient(circle at 50% 50%, #3b82f6 1px, transparent 1px)
-            `,
-            backgroundSize: '40px 40px',
-            backgroundPosition: '0 0, 20px 20px, 10px 10px'
-          }}
-        />
-      </div>
-
-      {/* Floating particles */}
-      {isClient && [...Array(8)].map((_, i) => (
-        <motion.div
-          key={i}
-          className={`absolute w-1 h-1 rounded-full ${
-            i % 3 === 0 ? 'bg-purple-500/30' : 
-            i % 3 === 1 ? 'bg-pink-500/30' : 'bg-blue-500/30'
-          }`}
-          initial={{
-            x: Math.random() * (typeof window !== 'undefined' ? window.innerWidth : 1000),
-            y: Math.random() * (typeof window !== 'undefined' ? window.innerHeight : 1000),
-          }}
-          animate={{
-            x: [null, Math.random() * (typeof window !== 'undefined' ? window.innerWidth : 1000)],
-            y: [null, Math.random() * (typeof window !== 'undefined' ? window.innerHeight : 1000)],
-          }}
-          transition={{
-            duration: 20 + Math.random() * 10,
-            repeat: Infinity,
-            repeatType: "reverse",
-            ease: "linear"
-          }}
-        />
-      ))}
-    </div>
-  )
+export default function BackgroundBlobs(){
+ const [mouse,setMouse]=useState({x:0,y:0})
+ const [client,setClient]=useState(false)
+ useEffect(()=>{setClient(true);const move=(e:MouseEvent)=>setMouse({x:e.clientX,y:e.clientY});window.addEventListener('mousemove',move);return()=>window.removeEventListener('mousemove',move)},[])
+ const stars=client?Array.from({length:70},(_,i)=>({id:i,left:Math.random()*100,top:Math.random()*100,size:i%9===0?2:i%4===0?1.5:1,delay:Math.random()*8,duration:5+Math.random()*10})):[]
+ return <div className="fixed inset-0 -z-10 overflow-hidden bg-[#02030a]" aria-hidden="true">
+   <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(15,23,42,.4),#02030a_72%)]"/>
+   <motion.div className="absolute -top-[20%] -left-[15%] h-[65%] w-[65%] rounded-full bg-cyan-500/[0.055] blur-[130px]" animate={{x:client?mouse.x*.015:0,y:client?mouse.y*.015:0}} transition={{type:'spring',stiffness:40,damping:24}}/>
+   <motion.div className="absolute -bottom-[25%] -right-[15%] h-[70%] w-[70%] rounded-full bg-violet-600/[0.09] blur-[140px]" animate={{x:client?mouse.x*-.012:0,y:client?mouse.y*-.012:0}} transition={{type:'spring',stiffness:35,damping:26}}/>
+   <motion.div className="absolute top-[25%] left-[48%] h-[40%] w-[42%] rounded-full bg-indigo-500/[0.045] blur-[120px]" animate={{x:client?mouse.x*.02:0,y:client?mouse.y*.01:0}} transition={{type:'spring',stiffness:30,damping:28}}/>
+   <div className="absolute inset-0 opacity-20" style={{backgroundImage:'linear-gradient(rgba(34,211,238,.045) 1px,transparent 1px),linear-gradient(90deg,rgba(139,92,246,.04) 1px,transparent 1px)',backgroundSize:'80px 80px'}}/>
+   <div className="absolute inset-0 opacity-70" style={{backgroundImage:'radial-gradient(circle at 50% 50%,rgba(255,255,255,.85) 0 1px,transparent 1.2px)',backgroundSize:'150px 150px'}}/>
+   {stars.map(s=><motion.span key={s.id} className="absolute rounded-full bg-white" style={{left:`${s.left}%`,top:`${s.top}%`,width:s.size,height:s.size}} initial={{opacity:.08}} animate={{opacity:[.08,.65,.12,.5,.08],scale:[1,1.25,1,1.15,1]}} transition={{duration:s.duration,delay:s.delay,repeat:Infinity,ease:'easeInOut'}}/>)}
+   <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_0%,transparent_0,rgba(2,3,10,.18)_50%,rgba(2,3,10,.7)_100%)]"/>
+ </div>
 }
