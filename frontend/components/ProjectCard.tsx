@@ -1,246 +1,48 @@
 "use client"
 import { motion } from 'framer-motion'
 import { Project } from '@/types'
-import { Github, ExternalLink, Calendar } from 'lucide-react'
+import { Github, ExternalLink, Calendar, Satellite } from 'lucide-react'
 
-interface Props {
-  project: Project;
-  className?: string;
-}
+interface Props { project: Project; className?: string }
 
-// Function to get logo/icon for each project
-const getProjectLogo = (projectTitle: string, techStack: string[]) => {
-  const title = projectTitle.toLowerCase()
-  const tech = techStack.map(t => t.toLowerCase()).join(' ')
-  
-  // Tech company logos
-  if (title.includes('e-commerce') || tech.includes('stripe')) {
-    return {
-      icon: '🛒',
-      gradient: 'from-blue-500 to-purple-500',
-      bgPattern: 'bg-gradient-to-br from-blue-100 to-purple-100 dark:from-blue-900/20 dark:to-purple-900/20'
-    }
-  }
-  if (title.includes('task') || tech.includes('socket.io')) {
-    return {
-      icon: '📋',
-      gradient: 'from-green-500 to-emerald-500',
-      bgPattern: 'bg-gradient-to-br from-green-100 to-emerald-100 dark:from-green-900/20 dark:to-emerald-900/20'
-    }
-  }
-  if (title.includes('weather') || tech.includes('openweather')) {
-    return {
-      icon: '🌤️',
-      gradient: 'from-cyan-500 to-blue-500',
-      bgPattern: 'bg-gradient-to-br from-cyan-100 to-blue-100 dark:from-cyan-900/20 dark:to-blue-900/20'
-    }
-  }
-  
-  // Creative projects
-  if (title.includes('brand') || title.includes('logo') || tech.includes('figma')) {
-    return {
-      icon: '🎨',
-      gradient: 'from-purple-500 to-pink-500',
-      bgPattern: 'bg-gradient-to-br from-purple-100 to-pink-100 dark:from-purple-900/20 dark:to-pink-900/20'
-    }
-  }
-  if (title.includes('photography') || tech.includes('photoshop')) {
-    return {
-      icon: '📸',
-      gradient: 'from-orange-500 to-red-500',
-      bgPattern: 'bg-gradient-to-br from-orange-100 to-red-100 dark:from-orange-900/20 dark:to-red-900/20'
-    }
-  }
-  if (title.includes('video') || tech.includes('after effects')) {
-    return {
-      icon: '🎬',
-      gradient: 'from-red-500 to-pink-500',
-      bgPattern: 'bg-gradient-to-br from-red-100 to-pink-100 dark:from-red-900/20 dark:to-pink-900/20'
-    }
-  }
-  if (title.includes('social media') || tech.includes('canva')) {
-    return {
-      icon: '📱',
-      gradient: 'from-blue-500 to-cyan-500',
-      bgPattern: 'bg-gradient-to-br from-blue-100 to-cyan-100 dark:from-blue-900/20 dark:to-cyan-900/20'
-    }
-  }
-  if (title.includes('fashion') || tech.includes('lightroom')) {
-    return {
-      icon: '👗',
-      gradient: 'from-pink-500 to-rose-500',
-      bgPattern: 'bg-gradient-to-br from-pink-100 to-rose-100 dark:from-pink-900/20 dark:to-rose-900/20'
-    }
-  }
-  if (title.includes('documentary') || tech.includes('storytelling')) {
-    return {
-      icon: '🎥',
-      gradient: 'from-gray-600 to-gray-800',
-      bgPattern: 'bg-gradient-to-br from-gray-100 to-gray-200 dark:from-gray-800/20 dark:to-gray-900/20'
-    }
-  }
-  if (title.includes('ui/ux') || tech.includes('design system')) {
-    return {
-      icon: '🎯',
-      gradient: 'from-indigo-500 to-purple-500',
-      bgPattern: 'bg-gradient-to-br from-indigo-100 to-purple-100 dark:from-indigo-900/20 dark:to-purple-900/20'
-    }
-  }
-  
-  // Default tech projects
-  if (tech.includes('django') || tech.includes('python')) {
-    return {
-      icon: '🐍',
-      gradient: 'from-green-500 to-blue-500',
-      bgPattern: 'bg-gradient-to-br from-green-100 to-blue-100 dark:from-green-900/20 dark:to-blue-900/20'
-    }
-  }
-  if (tech.includes('next.js') || tech.includes('react')) {
-    return {
-      icon: '⚛️',
-      gradient: 'from-cyan-500 to-blue-500',
-      bgPattern: 'bg-gradient-to-br from-cyan-100 to-blue-100 dark:from-cyan-900/20 dark:to-blue-900/20'
-    }
-  }
-  if (tech.includes('angular') || tech.includes('typescript')) {
-    return {
-      icon: '🅰️',
-      gradient: 'from-red-500 to-pink-500',
-      bgPattern: 'bg-gradient-to-br from-red-100 to-pink-100 dark:from-red-900/20 dark:to-pink-900/20'
-    }
-  }
-  
-  // Fallback
-  return {
-    icon: '💻',
-    gradient: 'from-gray-500 to-slate-500',
-    bgPattern: 'bg-gradient-to-br from-gray-100 to-slate-100 dark:from-gray-900/20 dark:to-slate-900/20'
-  }
+const getProjectLogo = (title: string, techStack: string[]) => {
+  const text = `${title} ${techStack.join(' ')}`.toLowerCase()
+  if (text.includes('weather') || text.includes('openweather')) return { icon: '☄', gradient: 'from-cyan-300 to-sky-500' }
+  if (text.includes('brand') || text.includes('design') || text.includes('logo')) return { icon: '✦', gradient: 'from-violet-300 to-fuchsia-500' }
+  if (text.includes('security')) return { icon: '◈', gradient: 'from-rose-300 to-violet-500' }
+  if (text.includes('django') || text.includes('python')) return { icon: '⌘', gradient: 'from-emerald-300 to-cyan-400' }
+  if (text.includes('next') || text.includes('react')) return { icon: '◉', gradient: 'from-sky-300 to-cyan-400' }
+  return { icon: '◇', gradient: 'from-cyan-300 to-violet-400' }
 }
 
 export default function ProjectCard({ project, className }: Props) {
-  const projectLogo = getProjectLogo(project.title, project.tech_stack)
-  
+  const logo = getProjectLogo(project.title, project.tech_stack)
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      whileHover={{ y: -8 }}
-      transition={{ duration: 0.5, type: "spring", stiffness: 300 }}
-      className={`glass-morphism rounded-xl overflow-hidden border border-white/20 hover-lift group ${className}`}
-    >
-      {/* Project Image with Logo Background */}
-      <div className={`relative h-48 ${projectLogo.bgPattern} overflow-hidden`}>
-        {/* Logo Background Pattern */}
-        <div className="absolute inset-0 opacity-20">
-          <div className="absolute inset-0 flex items-center justify-center">
-            <div className={`text-8xl font-bold bg-gradient-to-r ${projectLogo.gradient} bg-clip-text text-transparent`}>
-              {projectLogo.icon}
-            </div>
-          </div>
-          {/* Subtle pattern overlay */}
-          <div className="absolute inset-0" style={{
-            backgroundImage: `repeating-linear-gradient(45deg, transparent, transparent 10px, rgba(255,255,255,0.03) 10px, rgba(255,255,255,0.03) 20px)`
-          }} />
+    <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} whileHover={{ y: -8 }} transition={{ duration: .45 }} className={`space-panel overflow-hidden group ${className || ''}`}>
+      <div className="relative h-52 overflow-hidden bg-[radial-gradient(circle_at_center,rgba(34,211,238,.14),transparent_45%),#020617]">
+        <div className="absolute inset-0 opacity-30" style={{ backgroundImage: 'radial-gradient(circle, rgba(255,255,255,.7) 1px, transparent 1px)', backgroundSize: '28px 28px' }} />
+        <div className="absolute inset-0 flex items-center justify-center">
+          <motion.div animate={{ rotate: 360 }} transition={{ duration: 18, repeat: Infinity, ease: 'linear' }} className="absolute w-36 h-36 rounded-full border border-cyan-300/20 border-dashed" />
+          <div className={`text-7xl font-black bg-gradient-to-r ${logo.gradient} bg-clip-text text-transparent drop-shadow-[0_0_25px_rgba(34,211,238,.25)]`}>{logo.icon}</div>
         </div>
-        
-        {/* Gradient overlay */}
-        <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
-        
-        {/* Overlay with links */}
-        <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center gap-4">
-          {project.github_url && (
-            <motion.a
-              href={project.github_url}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="p-3 bg-white/10 backdrop-blur-sm rounded-full text-white hover:bg-white/20 transition-colors"
-              whileHover={{ scale: 1.1 }}
-              whileTap={{ scale: 0.9 }}
-            >
-              <Github className="w-5 h-5" />
-            </motion.a>
-          )}
-          {project.live_demo && (
-            <motion.a
-              href={project.live_demo}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="p-3 bg-white/10 backdrop-blur-sm rounded-full text-white hover:bg-white/20 transition-colors"
-              whileHover={{ scale: 1.1 }}
-              whileTap={{ scale: 0.9 }}
-            >
-              <ExternalLink className="w-5 h-5" />
-            </motion.a>
-          )}
+        <div className="absolute top-4 left-4 px-2.5 py-1 rounded-md bg-slate-950/70 border border-white/10 text-[10px] font-mono text-cyan-300">MISSION {String(project.id).padStart(3, '0')}</div>
+        <div className="absolute top-4 right-4 flex items-center gap-1 text-[10px] font-mono text-emerald-300"><span className="w-1.5 h-1.5 rounded-full bg-emerald-300 animate-pulse" /> ACTIVE</div>
+        <div className="absolute inset-0 bg-slate-950/75 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-3">
+          {project.github_url && <a href={project.github_url} target="_blank" rel="noopener noreferrer" className="p-3 rounded-xl bg-white/10 border border-white/10 text-white hover:text-cyan-300"><Github className="w-5 h-5" /></a>}
+          {project.live_demo && <a href={project.live_demo} target="_blank" rel="noopener noreferrer" className="p-3 rounded-xl bg-white/10 border border-white/10 text-white hover:text-cyan-300"><ExternalLink className="w-5 h-5" /></a>}
         </div>
       </div>
 
-      {/* Project Content */}
       <div className="p-6">
-        <div className="mb-4">
-          <h3 className="text-xl font-bold text-slate-800 dark:text-slate-200 mb-2 group-hover:text-primary-500 transition-colors">
-            {project.title}
-          </h3>
-          <p className="text-slate-600 dark:text-slate-400 text-sm leading-relaxed line-clamp-3">
-            {project.description}
-          </p>
-        </div>
-
-        {/* Tech Stack */}
-        <div className="flex flex-wrap gap-2 mb-4">
-          {project.tech_stack.slice(0, 3).map((tech) => (
-            <span
-              key={tech}
-              className="px-2 py-1 text-xs font-medium rounded-full bg-primary-100 dark:bg-primary-900/30 text-primary-700 dark:text-primary-300"
-            >
-              {tech}
-            </span>
-          ))}
-          {project.tech_stack.length > 3 && (
-            <span className="px-2 py-1 text-xs font-medium rounded-full bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400">
-              +{project.tech_stack.length - 3} more
-            </span>
-          )}
-        </div>
-
-        {/* Project Links */}
-        <div className="flex items-center justify-between pt-4 border-t border-slate-200 dark:border-slate-800">
-          <div className="flex gap-2">
-            {project.github_url && (
-              <motion.a
-                href={project.github_url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="p-2 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 hover:text-primary-500 hover:bg-primary-50 dark:hover:bg-primary-900/20 transition-colors"
-                whileHover={{ scale: 1.1 }}
-                whileTap={{ scale: 0.9 }}
-              >
-                <Github className="w-4 h-4" />
-              </motion.a>
-            )}
-            {project.live_demo && (
-              <motion.a
-                href={project.live_demo}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="p-2 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 hover:text-primary-500 hover:bg-primary-50 dark:hover:bg-primary-900/20 transition-colors"
-                whileHover={{ scale: 1.1 }}
-                whileTap={{ scale: 0.9 }}
-              >
-                <ExternalLink className="w-4 h-4" />
-              </motion.a>
-            )}
-          </div>
-          
-          <div className="flex items-center gap-1 text-xs text-slate-500 dark:text-slate-400">
-            <Calendar className="w-3 h-3" />
-            <span>
-              {new Date().getFullYear()}
-            </span>
-          </div>
+        <div className="flex items-center gap-2 text-cyan-300 text-[10px] font-mono mb-2"><Satellite className="w-3 h-3" /> DEPLOYMENT RECORD</div>
+        <h3 className="text-xl font-bold text-white mb-2 group-hover:text-cyan-300 transition-colors">{project.title}</h3>
+        <p className="text-slate-400 text-sm leading-relaxed line-clamp-3 mb-5">{project.description}</p>
+        <div className="flex flex-wrap gap-2 mb-5">{project.tech_stack.slice(0, 4).map(tech => <span key={tech} className="px-2 py-1 text-[10px] font-mono rounded-md bg-cyan-300/5 border border-cyan-300/10 text-cyan-200">{tech}</span>)}{project.tech_stack.length > 4 && <span className="px-2 py-1 text-[10px] rounded-md bg-white/5 text-slate-500">+{project.tech_stack.length - 4}</span>}</div>
+        <div className="flex items-center justify-between pt-4 border-t border-white/10">
+          <div className="flex gap-2">{project.github_url && <a href={project.github_url} target="_blank" rel="noopener noreferrer" className="p-2 rounded-lg bg-white/5 border border-white/10 text-slate-400 hover:text-cyan-300"><Github className="w-4 h-4" /></a>}{project.live_demo && <a href={project.live_demo} target="_blank" rel="noopener noreferrer" className="p-2 rounded-lg bg-white/5 border border-white/10 text-slate-400 hover:text-cyan-300"><ExternalLink className="w-4 h-4" /></a>}</div>
+          <div className="flex items-center gap-1 text-[10px] font-mono text-slate-500"><Calendar className="w-3 h-3" /> {new Date().getFullYear()}</div>
         </div>
       </div>
     </motion.div>
-  );
+  )
 }
