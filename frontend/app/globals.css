@@ -2,13 +2,25 @@
 @tailwind components;
 @tailwind utilities;
 
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap');
-
 @layer base {
   :root { --background:230 60% 4%; --foreground:210 40% 98%; --card:230 45% 8%; --card-foreground:210 40% 98%; --popover:230 45% 8%; --popover-foreground:210 40% 98%; --primary:191 100% 50%; --primary-foreground:230 60% 4%; --secondary:260 55% 16%; --secondary-foreground:210 40% 98%; --muted:230 25% 16%; --muted-foreground:215 20% 70%; --accent:278 90% 65%; --accent-foreground:210 40% 98%; --destructive:0 84% 60%; --destructive-foreground:210 40% 98%; --border:220 35% 22%; --input:220 35% 18%; --ring:191 100% 50%; --radius:.75rem; }
   html { scroll-behavior:smooth; background:#02030a; }
-  body { @apply text-slate-100; font-family:'Inter',sans-serif; background:#02030a; min-height:100vh; overflow-x:hidden; }
+  body {
+    @apply text-slate-100;
+    font-family:var(--font-space-grotesk),sans-serif;
+    background:
+      radial-gradient(circle at 12% 18%,rgba(34,211,238,.13) 0,transparent 25%),
+      radial-gradient(circle at 82% 22%,rgba(124,58,237,.18) 0,transparent 30%),
+      radial-gradient(circle at 52% 72%,rgba(59,130,246,.08) 0,transparent 28%),
+      radial-gradient(circle at 88% 88%,rgba(168,85,247,.12) 0,transparent 24%),
+      linear-gradient(135deg,#01030a 0%,#030718 45%,#08041a 100%);
+    background-attachment:fixed;
+    min-height:100vh;
+    overflow-x:hidden;
+  }
   .font-mono { font-family:'JetBrains Mono',monospace; }
+  .font-space { font-family:var(--font-orbitron),sans-serif; }
+  .space-nav { font-family:var(--font-orbitron),sans-serif; letter-spacing:.015em; }
   ::selection { background:rgba(168,85,247,.38); color:#fff; }
   * { scrollbar-width:thin; scrollbar-color:rgba(34,211,238,.45) rgba(2,3,10,.8); }
   *::-webkit-scrollbar { width:7px; height:7px; }
