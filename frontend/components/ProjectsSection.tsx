@@ -85,18 +85,18 @@ const ProjectsSection = () => {
               'Industrial brochure design showcasing the Broderson IC-80-1G carry deck crane, its capabilities, applications, and visual presentation.',
             tech_stack: ['Brochures', 'Graphic Design', 'Branding', 'Print Design'],
             github_url: '',
-            live_demo: '/documents/brochures/TGG-Carry-Deck-Crane.pdf',
-            image: '/images/projects/brochures/tgg-carry-deck-crane/cover.jpg',
+            live_demo: '/documents/carry_deck_crane_bronchure.pdf',
+            image: '/images/projects/bronchure_mockup.svg',
           },
           {
             id: 4,
-            title: 'PROFESSOR COMIC GRAPHIC DESIGN COLLECTION',
+            title: 'GRAPHIC DESIGN COLLECTION',
             description:
               'A curated collection of graphic design work including posters, promotional artwork, campaign graphics, and digital visual communication.',
             tech_stack: ['Graphic Design', 'Branding', 'UI/UX Design'],
             github_url: '',
             live_demo: '',
-            image: '/images/projects/graphic-design/collection-cover.jpg',
+            image: '/images/projects/graphic-design/collection-cover.svg',
           },
           {
             id: 5,
@@ -106,7 +106,7 @@ const ProjectsSection = () => {
             tech_stack: ['Branding', 'Graphic Design', 'Motion Graphics'],
             github_url: '',
             live_demo: '',
-            image: '/images/projects/branding/collection-cover.jpg',
+            image: '/images/projects/branding/collection-cover.svg',
           },
           {
             id: 6,
@@ -116,7 +116,7 @@ const ProjectsSection = () => {
             tech_stack: ['Photography', 'Video Production', 'Motion Graphics'],
             github_url: '',
             live_demo: '',
-            image: '/images/projects/visual-media/collection-cover.jpg',
+            image: '/images/projects/visual-media/collection-cover.svg',
           },
         ]);
         setLoading(false);
@@ -174,7 +174,7 @@ const ProjectsSection = () => {
           MISSION ARCHIVE // PROFESSOR COMIC // NAV-03
         </div>
         <h2 className="text-4xl md:text-5xl font-bold mb-6 gradient-text">
-          Professor Comic Mission Archive
+          Mission Archive
         </h2>
         <p className="text-slate-400 text-lg max-w-3xl mx-auto">
           A visual and technical record of Professor Comic&apos;s deployed software,

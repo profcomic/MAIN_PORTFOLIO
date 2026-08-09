@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ArrowUp, Radio, Orbit, Satellite } from 'lucide-react';
+import { ArrowUp, Radio } from 'lucide-react';
 import Hero from '@/components/Hero';
 import About from '@/components/About';
 import ProjectsSection from '@/components/ProjectsSection';
@@ -110,15 +110,16 @@ export default function HomePage() {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: -90, scale: 0.85 }}
             transition={{ type: 'spring', stiffness: 280, damping: 24 }}
-            className="fixed top-4 left-1/2 -translate-x-1/2 z-50 w-[calc(100%-1.5rem)] max-w-5xl"
+            className="fixed top-4 left-1/2 -translate-x-1/2 z-50 w-[calc(100%-2rem)] max-w-6xl"
           >
             <nav
               aria-label="Orbital navigation"
-              className="flex items-center gap-2 md:gap-4 p-2 md:p-3 bg-slate-950/80 backdrop-blur-2xl rounded-2xl border border-cyan-300/15 shadow-[0_0_50px_rgba(34,211,238,.08)]"
+              className="flex items-center gap-2 md:gap-4 p-2 md:p-2.5 bg-slate-950/80 backdrop-blur-2xl rounded-2xl border border-cyan-300/15 shadow-[0_0_50px_rgba(34,211,238,.08)]"
             >
-              <div className="hidden sm:flex items-center gap-2 px-3 py-2 border-r border-white/10 shrink-0">
-                <div className="relative w-7 h-7 rounded-full border border-cyan-300/50 flex items-center justify-center">
-                  <span className="w-2 h-2 rounded-full bg-cyan-300 shadow-[0_0_12px_rgba(103,232,249,.9)]" />
+              {/* Left Branding */}
+              <div className="hidden md:flex items-center gap-2 px-3 py-1.5 border-r border-white/10 shrink-0">
+                <div className="relative w-6 h-6 rounded-full border border-cyan-300/50 flex items-center justify-center">
+                  <span className="w-1.5 h-1.5 rounded-full bg-cyan-300 shadow-[0_0_12px_rgba(103,232,249,.9)]" />
                   <span className="absolute inset-0 rounded-full border border-violet-400/30 animate-ping" />
                 </div>
                 <div>
@@ -131,7 +132,8 @@ export default function HomePage() {
                 </div>
               </div>
 
-              <div className="flex flex-1 gap-1 overflow-x-auto scrollbar-hide">
+              {/* Navigation Items (Properly spaced without right overhang) */}
+              <div className="flex flex-1 items-center justify-evenly gap-1 md:gap-3 overflow-x-auto scrollbar-hide px-2">
                 {navItems.map((item) => (
                   <motion.a
                     key={item.id}
@@ -142,7 +144,7 @@ export default function HomePage() {
                       activeSection === item.id ? 'page' : undefined
                     }
                     title={`${item.status} // ${item.code}`}
-                    className={`flex-1 min-w-[110px] md:min-w-0 flex items-center justify-center gap-1.5 md:gap-2 px-2 md:px-4 py-2.5 rounded-xl transition-all ${
+                    className={`flex-1 min-w-[120px] md:min-w-0 flex items-center justify-center gap-1.5 md:gap-2 px-3 py-2 md:py-2.5 rounded-xl transition-all ${
                       activeSection === item.id
                         ? 'bg-gradient-to-r from-cyan-400/15 via-sky-400/10 to-violet-500/20 text-cyan-200 border border-cyan-300/20 shadow-[0_0_24px_rgba(34,211,238,.08)]'
                         : 'text-slate-400 hover:text-white hover:bg-white/5'
@@ -160,7 +162,7 @@ export default function HomePage() {
                     <span className="font-semibold text-xs md:text-sm whitespace-nowrap">
                       {item.label}
                     </span>
-                    <span className="hidden lg:inline text-[8px] font-mono text-slate-600">
+                    <span className="hidden xl:inline text-[8px] font-mono text-slate-600">
                       {item.code}
                     </span>
                   </motion.a>
@@ -175,8 +177,8 @@ export default function HomePage() {
       <DraggableStatus />
       <SoundToggle />
 
-      {/* Main Content */}
-      <main className="relative z-10">
+      {/* Main Content with Edge Spacing */}
+      <main className="relative z-10 px-4 sm:px-8 lg:px-12 max-w-7xl mx-auto">
         <AnimatePresence>
           {isVisible && (
             <>
@@ -195,7 +197,7 @@ export default function HomePage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.8 }}
-                className="min-h-screen flex items-center justify-center px-6 py-20"
+                className="min-h-screen flex items-center justify-center py-20"
               >
                 <About />
               </motion.section>
@@ -206,7 +208,7 @@ export default function HomePage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.8 }}
-                className="min-h-screen px-6 py-20"
+                className="min-h-screen py-20"
               >
                 <ProjectsSection />
               </motion.section>
@@ -217,7 +219,7 @@ export default function HomePage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.8 }}
-                className="min-h-screen flex items-center justify-center px-6 py-20"
+                className="min-h-screen flex items-center justify-center py-20"
               >
                 <Contact />
               </motion.section>
