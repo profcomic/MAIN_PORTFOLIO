@@ -1,4 +1,143 @@
-"use client"
-import {useEffect,useRef,useState} from 'react'
-interface Particle{id:number;x:number;y:number;vx:number;vy:number;size:number;color:string}
-export default function ParticleBackground(){const canvasRef=useRef<HTMLCanvasElement>(null);const particlesRef=useRef<Particle[]>([]);const mouseRef=useRef({x:-9999,y:-9999});const animationRef=useRef<number>();const[ready,setReady]=useState(false);useEffect(()=>{const canvas=canvasRef.current;if(!canvas)return;const ctx=canvas.getContext('2d');if(!ctx)return;const resize=()=>{const dpr=Math.min(window.devicePixelRatio||1,2);canvas.width=window.innerWidth*dpr;canvas.height=window.innerHeight*dpr;canvas.style.width=`${window.innerWidth}px`;canvas.style.height=`${window.innerHeight}px`;ctx.setTransform(dpr,0,0,dpr,0,0)};resize();const colors=['#67e8f9','#38bdf8','#a78bfa','#c4b5fd'];const count=Math.min(75,Math.floor(window.innerWidth/18));particlesRef.current=Array.from({length:count},(_,id)=>({id,x:Math.random()*window.innerWidth,y:Math.random()*window.innerHeight,vx:(Math.random()-.5)*.18,vy:(Math.random()-.5)*.18,size:Math.random()*1.7+.45,color:colors[Math.floor(Math.random()*colors.length)]}));const move=(e:MouseEvent)=>{mouseRef.current={x:e.clientX,y:e.clientY}};const leave=()=>{mouseRef.current={x:-9999,y:-9999}};window.addEventListener('resize',resize);window.addEventListener('mousemove',move);window.addEventListener('mouseleave',leave);setReady(true);const animate=()=>{ctx.clearRect(0,0,window.innerWidth,window.innerHeight);const ps=particlesRef.current;for(const p of ps){const dx=mouseRef.current.x-p.x,dy=mouseRef.current.y-p.y,d=Math.hypot(dx,dy);if(d<120&&d>0){const force=(120-d)/120*.012;p.vx-=dx/d*force;p.vy-=dy/d*force}p.x+=p.vx;p.y+=p.vy;if(p.x<0)p.x=window.innerWidth;if(p.x>window.innerWidth)p.x=0;if(p.y<0)p.y=window.innerHeight;if(p.y>window.innerHeight)p.y=0;p.vx*=.999;p.vy*=.999;ctx.beginPath();ctx.arc(p.x,p.y,p.size,0,Math.PI*2);ctx.fillStyle=p.color;ctx.globalAlpha=.35;ctx.fill()}ctx.globalAlpha=1;for(let i=0;i<ps.length;i++)for(let j=i+1;j<ps.length;j++){const a=ps[i],b=ps[j],d=Math.hypot(a.x-b.x,a.y-b.y);if(d<105){ctx.beginPath();ctx.moveTo(a.x,a.y);ctx.lineTo(b.x,b.y);ctx.strokeStyle='#67e8f9';ctx.globalAlpha=(1-d/105)*.055;ctx.lineWidth=.5;ctx.stroke()}}ctx.globalAlpha=1;animationRef.current=requestAnimationFrame(animate)};animate();return()=>{window.removeEventListener('resize',resize);window.removeEventListener('mousemove',move);window.removeEventListener('mouseleave',leave);if(animationRef.current)cancelAnimationFrame(animationRef.current)}},[]);return <canvas ref={canvasRef} aria-hidden="true" className={`fixed inset-0 -z-10 pointer-events-none transition-opacity duration-1000 ${ready?'opacity-100':'opacity-0'}`} style={{opacity:.55}}/>}
+"use client";
+
+import { useEffect, useRef, useState } from 'react';
+
+interface Particle {
+  id: number;
+  x: number;
+  y: number;
+  vx: number;
+  vy: number;
+  size: number;
+  color: string;
+}
+
+export default function ParticleBackground() {
+  const canvasRef = useRef<HTMLCanvasElement>(null);
+  const particlesRef = useRef<Particle[]>([]);
+  const mouseRef = useRef({ x: -9999, y: -9999 });
+  const animationRef = useRef<number>();
+  const [ready, setReady] = useState(false);
+
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+
+    const ctx = canvas.getContext('2d');
+    if (!ctx) return;
+
+    const resize = () => {
+      const dpr = Math.min(window.devicePixelRatio || 1, 2);
+      canvas.width = window.innerWidth * dpr;
+      canvas.height = window.innerHeight * dpr;
+      canvas.style.width = `${window.innerWidth}px`;
+      canvas.style.height = `${window.innerHeight}px`;
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    };
+
+    resize();
+
+    const colors = ['#67e8f9', '#38bdf8', '#a78bfa', '#c4b5fd'];
+    const count = Math.min(75, Math.floor(window.innerWidth / 18));
+
+    particlesRef.current = Array.from({ length: count }, (_, id) => ({
+      id,
+      x: Math.random() * window.innerWidth,
+      y: Math.random() * window.innerHeight,
+      vx: (Math.random() - 0.5) * 0.18,
+      vy: (Math.random() - 0.5) * 0.18,
+      size: Math.random() * 1.7 + 0.45,
+      color: colors[Math.floor(Math.random() * colors.length)],
+    }));
+
+    const move = (e: MouseEvent) => {
+      mouseRef.current = { x: e.clientX, y: e.clientY };
+    };
+
+    const leave = () => {
+      mouseRef.current = { x: -9999, y: -9999 };
+    };
+
+    window.addEventListener('resize', resize);
+    window.addEventListener('mousemove', move);
+    window.addEventListener('mouseleave', leave);
+    setReady(true);
+
+    const animate = () => {
+      ctx.clearRect(0, 0, window.innerWidth, window.innerHeight);
+      const ps = particlesRef.current;
+
+      for (const p of ps) {
+        const dx = mouseRef.current.x - p.x;
+        const dy = mouseRef.current.y - p.y;
+        const d = Math.hypot(dx, dy);
+
+        if (d < 120 && d > 0) {
+          const force = ((120 - d) / 120) * 0.012;
+          p.vx -= (dx / d) * force;
+          p.vy -= (dy / d) * force;
+        }
+
+        p.x += p.vx;
+        p.y += p.vy;
+
+        if (p.x < 0) p.x = window.innerWidth;
+        if (p.x > window.innerWidth) p.x = 0;
+        if (p.y < 0) p.y = window.innerHeight;
+        if (p.y > window.innerHeight) p.y = 0;
+
+        p.vx *= 0.999;
+        p.vy *= 0.999;
+
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+        ctx.fillStyle = p.color;
+        ctx.globalAlpha = 0.35;
+        ctx.fill();
+      }
+
+      ctx.globalAlpha = 1;
+
+      for (let i = 0; i < ps.length; i++) {
+        for (let j = i + 1; j < ps.length; j++) {
+          const a = ps[i];
+          const b = ps[j];
+          const d = Math.hypot(a.x - b.x, a.y - b.y);
+
+          if (d < 105) {
+            ctx.beginPath();
+            ctx.moveTo(a.x, a.y);
+            ctx.lineTo(b.x, b.y);
+            ctx.strokeStyle = '#67e8f9';
+            ctx.globalAlpha = (1 - d / 105) * 0.055;
+            ctx.lineWidth = 0.5;
+            ctx.stroke();
+          }
+        }
+      }
+
+      ctx.globalAlpha = 1;
+      animationRef.current = requestAnimationFrame(animate);
+    };
+
+    animate();
+
+    return () => {
+      window.removeEventListener('resize', resize);
+      window.removeEventListener('mousemove', move);
+      window.removeEventListener('mouseleave', leave);
+      if (animationRef.current) cancelAnimationFrame(animationRef.current);
+    };
+  }, []);
+
+  return (
+    <canvas
+      ref={canvasRef}
+      aria-hidden="true"
+      className={`fixed inset-0 -z-10 pointer-events-none transition-opacity duration-1000 ${
+        ready ? 'opacity-100' : 'opacity-0'
+      }`}
+      style={{ opacity: 0.55 }}
+    />
+  );
+}

@@ -1,75 +1,83 @@
-# Portfolio Website
+# Nexus Lab Portfolio
 
-A modern, responsive portfolio website built with Django (backend) and Next.js (frontend). Featuring a unique glassmorphism design, smooth animations, and full-stack integration.
+A polished full-stack portfolio website built with Django for the backend and Next.js for the frontend. The experience combines a cinematic, interactive UI with a content-driven project showcase and contact flow.
 
-## 🚀 Features
+## Overview
 
-- **Modern Design**: Glassmorphism UI with animated backgrounds and smooth transitions
-- **Dark/Light Theme**: Seamless theme switching with system preference detection
-- **Responsive Design**: Optimized for all devices (mobile, tablet, desktop)
-- **Interactive Components**: Hover effects, animations, and micro-interactions
-- **Project Showcase**: Dynamic project filtering and detailed project cards
-- **Contact Form**: Functional contact form with validation
-- **GitHub Integration**: Real-time GitHub stats and repository display
-- **SEO Optimized**: Meta tags, semantic HTML, and structured data
+This project is designed as a personal portfolio with:
+- a modern one-page experience
+- animated sections and ambient visual effects
+- a dynamic projects showcase
+- a lightweight API layer for portfolio content and contact handling
 
-## 🛠 Tech Stack
+## Features
+
+- Responsive, immersive landing page experience
+- Animated navigation, particle effects, and cursor trails
+- Theme-friendly visual system with glassmorphism-inspired styling
+- Project cards and portfolio content driven by the backend
+- Contact form endpoint for submissions
+- GitHub status integration support
+
+## Tech Stack
 
 ### Frontend
-- **Next.js 14** - React framework with App Router
-- **TypeScript** - Type-safe JavaScript
-- **Tailwind CSS** - Utility-first CSS framework
-- **Framer Motion** - Animation library
-- **Lucide React** - Icon library
-- **Next Themes** - Theme management
+- Next.js 14
+- React 18
+- TypeScript
+- Tailwind CSS
+- Framer Motion
+- Lucide React
+- next-themes
 
 ### Backend
-- **Django** - Python web framework
-- **Django REST Framework** - API development
-- **SQLite** - Database (development)
-- **PostgreSQL** - Database (production)
-- **CORS Headers** - Cross-origin resource sharing
+- Django
+- Django REST Framework
+- django-cors-headers
+- Pillow
+- requests
 
-## 📁 Project Structure
+## Project Structure
 
+```text
+main_portfolio/
+├── backend/
+│   └── professor/
+│       ├── manage.py
+│       ├── professor/
+│       │   ├── settings.py
+│       │   ├── urls.py
+│       │   └── wsgi.py
+│       └── projects/
+│           ├── models.py
+│           ├── serializers.py
+│           ├── views.py
+│           ├── urls.py
+│           └── management/
+├── frontend/
+│   ├── app/
+│   ├── components/
+│   ├── types/
+│   └── package.json
+└── README.md
 ```
-Portfolio/
-├── backend/                 # Django backend
-│   ├── professor/           # Django project
-│   │   ├── projects/       # Projects app
-│   │   ├── settings.py     # Django settings
-│   │   └── urls.py        # Main URLs
-│   └── manage.py          # Django management
-├── frontend/               # Next.js frontend
-│   ├── app/               # App Router pages
-│   │   ├── globals.css    # Global styles
-│   │   ├── layout.tsx     # Root layout
-│   │   └── page.tsx      # Home page
-│   ├── components/        # React components
-│   │   ├── About.tsx     # About section
-│   │   ├── Contact.tsx    # Contact section
-│   │   ├── Hero.tsx      # Hero section
-│   │   └── ...          # Other components
-│   ├── types/            # TypeScript types
-│   └── package.json      # Dependencies
-└── README.md            # This file
-```
 
-## 🚀 Getting Started
+## Getting Started
 
 ### Prerequisites
-- Node.js 18+ and npm
-- Python 3.8+
+- Node.js 18+
+- Python 3.10+
+- npm or yarn
 - Git
 
 ### Backend Setup
 
-1. Navigate to the backend directory:
+1. Open the backend folder:
 ```bash
-cd backend
+cd backend/professor
 ```
 
-2. Create and activate virtual environment:
+2. Create and activate a virtual environment:
 ```bash
 python -m venv venv
 
@@ -80,17 +88,17 @@ venv\Scripts\activate
 source venv/bin/activate
 ```
 
-3. Install dependencies:
+3. Install Python dependencies:
 ```bash
-pip install -r requirements.txt
+pip install -r ../requirements.txt
 ```
 
-4. Run migrations:
+4. Apply database migrations:
 ```bash
 python manage.py migrate
 ```
 
-5. Create sample projects (optional):
+5. Optionally create sample project data:
 ```bash
 python manage.py create_sample_projects
 ```
@@ -100,11 +108,11 @@ python manage.py create_sample_projects
 python manage.py runserver
 ```
 
-The backend will be available at `http://127.0.0.1:8000`
+The backend API will run at http://127.0.0.1:8000.
 
 ### Frontend Setup
 
-1. Navigate to the frontend directory:
+1. Open the frontend folder:
 ```bash
 cd frontend
 ```
@@ -119,100 +127,28 @@ npm install
 npm run dev
 ```
 
-The frontend will be available at `http://localhost:3000`
+The frontend will be available at http://localhost:3000.
 
-## 📡 API Endpoints
+## API Endpoints
 
-### Projects
-- `GET /api/projects/` - List all projects
-- `POST /api/projects/` - Create new project (admin only)
+- GET /api/projects/ — list portfolio projects
+- POST /api/contact/ — submit a contact form message
+- GET /api/github-status/ — return GitHub statistics data
 
-### GitHub Status
-- `GET /api/github-status/` - Get GitHub statistics
+## Customization
 
-### Contact
-- `POST /api/contact/` - Submit contact form
+You can personalize the portfolio by updating:
+- [frontend/components/Hero.tsx](frontend/components/Hero.tsx) for your intro and links
+- [frontend/components/About.tsx](frontend/components/About.tsx) for your bio and experience
+- [frontend/components/Contact.tsx](frontend/components/Contact.tsx) for your contact details
+- the Django project data in the admin panel or through the project API
 
-## 🎨 Customization
+## Notes
 
-### Personal Information
-Update the following files with your information:
+- The current frontend uses a custom sci-fi inspired visual language and animated layout.
+- The backend currently exposes the project and contact endpoints while leaving room for further expansion.
+- If you want to switch the GitHub integration to your own profile, update the username in the backend view logic.
 
-1. **Hero Component** (`frontend/components/Hero.tsx`):
-   - Name and title
-   - Social media links
-   - Tech stack badges
+## License
 
-2. **About Component** (`frontend/components/About.tsx`):
-   - Skills and experience
-   - Personal description
-   - Timeline details
-
-3. **Contact Component** (`frontend/components/Contact.tsx`):
-   - Contact information
-   - Social media links
-
-### Projects
-Add your projects through:
-- Django admin interface (`/admin/`)
-- Management command: `python manage.py create_sample_projects`
-- Direct API calls
-
-### Styling
-- Modify `tailwind.config.js` for theme customization
-- Update `app/globals.css` for global styles
-- Adjust component-specific styles in individual files
-
-## 🌟 Features in Detail
-
-### Glassmorphism Design
-- Frosted glass effect with backdrop blur
-- Subtle borders and shadows
-- Animated background gradients
-
-### Animations
-- Smooth scroll animations
-- Hover effects and micro-interactions
-- Loading states and transitions
-- Floating background elements
-
-### Responsive Design
-- Mobile-first approach
-- Flexible grid layouts
-- Touch-friendly interactions
-- Optimized navigation
-
-### Performance
-- Code splitting and lazy loading
-- Optimized images and assets
-- Efficient animations
-- SEO best practices
-
-## 📱 Browser Support
-
-- Chrome 90+
-- Firefox 88+
-- Safari 14+
-- Edge 90+
-
-## 🤝 Contributing
-
-1. Fork the repository
-2. Create a feature branch
-3. Make your changes
-4. Add tests if applicable
-5. Submit a pull request
-
-## 📄 License
-
-This project is licensed under the MIT License - see the LICENSE file for details.
-
-## 📞 Contact
-
-- Email: your.email@example.com
-- GitHub: https://github.com/yourusername
-- LinkedIn: https://linkedin.com/in/yourusername
-
----
-
-Built with ❤️ using Django, Next.js, and modern web technologies.
+This project is provided as a personal portfolio template and can be adapted for your own use.

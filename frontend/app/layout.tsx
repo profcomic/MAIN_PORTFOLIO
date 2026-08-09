@@ -5,8 +5,30 @@ import { ThemeProvider } from '@/components/ThemeProvider'
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata = {
-  title: 'Phroneo Spectacular Space - Full Stack Developer & Creative Professional',
-  description: 'Building scalable systems with Python & TypeScript. Expert in Django, Next.js, Angular, Graphic Design, Data Science, and Cybersecurity.',
+  title: 'ANTHONNEY MWANZAH - PROFESSOR',
+  description: 'Nerd by nature',
+  icons: {
+    icon: '/phroneo-logo.jpg',
+    apple: '/phroneo-logo.jpg',
+    shortcut: '/phroneo-logo.jpg',
+  },
+  openGraph: {
+    title: 'ANTHONNEY MWANZAH - PROFESSOR',
+    description: 'Nerd by nature',
+    url: 'https://profcomic.netlify.app',
+    siteName: 'ANTHONNEY PORTFOLIO',
+    images: [
+      {
+        url: '/phroneo-logo.jpg',
+        width: 1200,
+        height: 1200,
+        alt: 'ANTHONNEY MWANZAH - PROFESSOR',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+  },
 }
 
 export default function RootLayout({

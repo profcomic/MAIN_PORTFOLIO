@@ -1,5 +1,69 @@
-"use client"
-import {useState,useEffect,useRef} from 'react'
-import {motion} from 'framer-motion'
-import {Volume2,VolumeX,Radio} from 'lucide-react'
-export default function SoundToggle(){const[muted,setMuted]=useState(false);const[audio,setAudio]=useState<AudioContext|null>(null);const gain=useRef<GainNode|null>(null);useEffect(()=>{const init=()=>{if(audio)return;const Ctx=window.AudioContext||(window as any).webkitAudioContext;if(!Ctx)return;const ctx=new Ctx();const osc=ctx.createOscillator();const g=ctx.createGain();osc.type='sine';osc.frequency.setValueAtTime(108,ctx.currentTime);g.gain.setValueAtTime(.012,ctx.currentTime);osc.connect(g);g.connect(ctx.destination);osc.start();setAudio(ctx);gain.current=g};document.addEventListener('pointerdown',init,{once:true});return()=>document.removeEventListener('pointerdown',init)},[audio]);const toggle=()=>{if(!gain.current||!audio)return;const next=!muted;gain.current.gain.setTargetAtTime(next?0:.012,audio.currentTime,.04);setMuted(next)};return <motion.button type="button" onClick={toggle} aria-label={muted?'Restore ambient channel':'Mute ambient channel'} title={muted?'Restore ambient channel':'Mute ambient channel'} className="fixed bottom-8 left-8 z-40 flex items-center gap-2 px-3 py-2 rounded-xl bg-slate-950/85 backdrop-blur-xl border border-violet-300/15 shadow-[0_0_25px_rgba(139,92,246,.1)] text-slate-400 hover:text-cyan-300" whileHover={{scale:1.05}} whileTap={{scale:.95}}><Radio className="w-3 h-3 text-violet-300"/><span className="hidden sm:inline text-[9px] font-mono tracking-wider">AMBIENT</span>{muted?<VolumeX className="w-4 h-4"/>:<Volume2 className="w-4 h-4 text-cyan-300"/>}</motion.button>}
+"use client";
+
+import { useState, useEffect, useRef } from 'react';
+import { motion } from 'framer-motion';
+import { Volume2, VolumeX, Radio } from 'lucide-react';
+
+export default function SoundToggle() {
+  const [muted, setMuted] = useState(false);
+  const [audio, setAudio] = useState<AudioContext | null>(null);
+  const gain = useRef<GainNode | null>(null);
+
+  useEffect(() => {
+    const init = () => {
+      if (audio) return;
+      const Ctx =
+        window.AudioContext ||
+        (window as unknown as { webkitAudioContext: typeof AudioContext })
+          .webkitAudioContext;
+      if (!Ctx) return;
+
+      const ctx = new Ctx();
+      const osc = ctx.createOscillator();
+      const g = ctx.createGain();
+
+      osc.type = 'sine';
+      osc.frequency.setValueAtTime(108, ctx.currentTime);
+      g.gain.setValueAtTime(0.012, ctx.currentTime);
+
+      osc.connect(g);
+      g.connect(ctx.destination);
+      osc.start();
+
+      setAudio(ctx);
+      gain.current = g;
+    };
+
+    document.addEventListener('pointerdown', init, { once: true });
+    return () => document.removeEventListener('pointerdown', init);
+  }, [audio]);
+
+  const toggle = () => {
+    if (!gain.current || !audio) return;
+    const next = !muted;
+    gain.current.gain.setTargetAtTime(next ? 0 : 0.012, audio.currentTime, 0.04);
+    setMuted(next);
+  };
+
+  return (
+    <motion.button
+      type="button"
+      onClick={toggle}
+      aria-label={muted ? 'Restore ambient channel' : 'Mute ambient channel'}
+      title={muted ? 'Restore ambient channel' : 'Mute ambient channel'}
+      className="fixed bottom-8 left-8 z-40 flex items-center gap-2 px-3 py-2 rounded-xl bg-slate-950/85 backdrop-blur-xl border border-violet-300/15 shadow-[0_0_25px_rgba(139,92,246,.1)] text-slate-400 hover:text-cyan-300"
+      whileHover={{ scale: 1.05 }}
+      whileTap={{ scale: 0.95 }}
+    >
+      <Radio className="w-3 h-3 text-violet-300" />
+      <span className="hidden sm:inline text-[9px] font-mono tracking-wider">
+        AMBIENT
+      </span>
+      {muted ? (
+        <VolumeX className="w-4 h-4" />
+      ) : (
+        <Volume2 className="w-4 h-4 text-cyan-300" />
+      )}
+    </motion.button>
+  );
+}
