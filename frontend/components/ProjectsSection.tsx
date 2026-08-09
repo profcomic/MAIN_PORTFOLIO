@@ -11,6 +11,11 @@ import {
   Orbit,
   Radio,
   Satellite,
+  Palette,
+  FileText,
+  Camera,
+  Video,
+  Code2,
 } from 'lucide-react';
 
 const ProjectsSection = () => {
@@ -18,22 +23,24 @@ const ProjectsSection = () => {
   const [filter, setFilter] = useState('All');
   const [loading, setLoading] = useState(true);
 
-  const TECHNOLOGIES = [
+  const CATEGORIES = [
     'All',
+    'Software',
+    'Brochures',
+    'Graphic Design',
+    'Branding',
+    'UI/UX Design',
+    'Photography',
+    'Video Production',
+    'Motion Graphics',
     'Python',
     'Django',
-    'TypeScript',
     'Next.js',
-    'Angular',
     'React',
+    'Angular',
     'Flask',
     'Data Science',
     'Cybersecurity',
-    'Graphic Design',
-    'Photography',
-    'Video Production',
-    'UI/UX Design',
-    'Motion Graphics',
   ];
 
   const apiBase =
@@ -51,79 +58,65 @@ const ProjectsSection = () => {
         setProjects([
           {
             id: 1,
-            title: "HARNESSERS YOUTHS HUB WEBSITE",
-            description: "A full interactive website for harnessers built using the Next.js framework.",
-            tech_stack: ["Next.js"],
-            github_url: "https://github.com/profcomic/HARNESSERS-NETWORK",
-            live_demo: "https://harnessers-hub.vercel.app/",
-            image: "https://api.microlink.io/?url=https://harnessers-hub.vercel.app/&screenshot=true&embed=screenshot.url",
-            project_date: "2026-06-15",
-            created_at: "2026-06-15T10:00:00Z",
-            updated_at: "2026-06-15T10:00:00Z"
+            title: 'HARNESSERS YOUTHS HUB WEBSITE',
+            description:
+              'A full interactive website for Harnessers built using the Next.js framework.',
+            tech_stack: ['Software', 'Next.js', 'TypeScript', 'UI/UX Design'],
+            github_url: 'https://github.com/profcomic/HARNESSERS-NETWORK',
+            live_demo: 'https://harnessers-hub.vercel.app/',
+            image:
+              'https://api.microlink.io/?url=https://harnessers-hub.vercel.app/&screenshot=true&embed=screenshot.url',
           },
           {
             id: 2,
-            title: "FLOQPULSE MANAGEMENT SYSTEM",
-            description: "A collaborative task management application with real-time updates, drag-and-drop functionality, and team collaboration features.",
-            tech_stack: ["Django"],
-            github_url: "https://github.com/pofcomic/floqpulse",
-            live_demo: "https://floqpulse.com",
-            image: "https://api.microlink.io/?url=https://github.com/pofcomic/floqpulse/&screenshot=true&embed=screenshot.url",
-            project_date: "2026-02-20",
-            created_at: "2026-12-20T14:30:00Z",
-            updated_at: "2026-12-20T14:30:00Z"
+            title: 'FLOQPULSE MANAGEMENT SYSTEM',
+            description:
+              'A collaborative task management application with real-time updates, drag-and-drop functionality, and team collaboration features.',
+            tech_stack: ['Software', 'Django', 'Python'],
+            github_url: 'https://github.com/profcomic/FLOQPULSE',
+            live_demo: 'https://floqpulse.com',
+            image:
+              'https://api.microlink.io/?url=https://github.com/profcomic/FLOQPULSE/&screenshot=true&embed=screenshot.url',
           },
           {
             id: 3,
-            title: "Blog Platform",
-            description: "A modern blogging platform with markdown support, SEO optimization, and social media integration.",
-            tech_stack: ["Flask", "Python", "SQLite", "Bootstrap"],
-            github_url: "https://github.com/profcomic",
-            live_demo: "https://blog-demo.com",
-            image: "https://api.microlink.io/?url=https://github.com/profcomic/&screenshot=true&embed=screenshot.url",
-            project_date: "2026-03-10",
-            created_at: "2026-03-10T09:15:00Z",
-            updated_at: "2026-03-10T09:15:00Z"
+            title: 'TGG CARRY DECK CRANE BROCHURE',
+            description:
+              'Industrial brochure design showcasing the Broderson IC-80-1G carry deck crane, its capabilities, applications, and visual presentation.',
+            tech_stack: ['Brochures', 'Graphic Design', 'Branding', 'Print Design'],
+            github_url: '',
+            live_demo: '/documents/brochures/TGG-Carry-Deck-Crane.pdf',
+            image: '/images/projects/brochures/tgg-carry-deck-crane/cover.jpg',
           },
           {
             id: 4,
-            title: 'Extensive Modern Website',
+            title: 'PROFESSOR COMIC GRAPHIC DESIGN COLLECTION',
             description:
-              'A full-featured website with e-commerce section built with Django, featuring user authentication, payment processing, and inventory management.',
-            tech_stack: ['Django'],
-            github_url: 'https://github.com/yourusername/BBC DJANGO WEBSITE',
-            live_demo: 'https://bbcmsa.com',
-            image: '/api/placeholder/400/300',
+              'A curated collection of graphic design work including posters, promotional artwork, campaign graphics, and digital visual communication.',
+            tech_stack: ['Graphic Design', 'Branding', 'UI/UX Design'],
+            github_url: '',
+            live_demo: '',
+            image: '/images/projects/graphic-design/collection-cover.jpg',
           },
           {
             id: 5,
-            title: 'Management System',
+            title: 'VISUAL BRANDING MISSIONS',
             description:
-              'A collaborative task management application with real-time updates, drag-and-drop functionality, and team collaboration features.',
-            tech_stack: ['Django'],
-            github_url: 'https://github.com/yourusername/floqpulse',
-            live_demo: 'https://floqpulse.com',
-            image: '/api/placeholder/400/300',
+              'Brand identity and visual communication work developed for digital campaigns, organizations, and promotional projects.',
+            tech_stack: ['Branding', 'Graphic Design', 'Motion Graphics'],
+            github_url: '',
+            live_demo: '',
+            image: '/images/projects/branding/collection-cover.jpg',
           },
           {
             id: 6,
-            title: 'Weather Dashboard',
+            title: 'VISUAL MEDIA EXPEDITIONS',
             description:
-              'A beautiful weather dashboard with location-based forecasts, interactive maps, and detailed meteorological data visualization.',
-            tech_stack: ['Angular', 'TypeScript', 'Chart.js', 'OpenWeather API'],
-            github_url: 'https://github.com/yourusername/weather-dashboard',
-            live_demo: 'https://weather-demo.com',
-            image: '/api/placeholder/400/300',
-          },
-          {
-            id: 7,
-            title: 'Blog Platform',
-            description:
-              'A modern blogging platform with markdown support, SEO optimization, and social media integration.',
-            tech_stack: ['Flask', 'Python', 'SQLite', 'Bootstrap'],
-            github_url: 'https://github.com/yourusername/blog-platform',
-            live_demo: 'https://blog-demo.com',
-            image: '/api/placeholder/400/300',
+              'Photography, video production, and visual storytelling projects created for communication, promotion, and digital media.',
+            tech_stack: ['Photography', 'Video Production', 'Motion Graphics'],
+            github_url: '',
+            live_demo: '',
+            image: '/images/projects/visual-media/collection-cover.jpg',
           },
         ]);
         setLoading(false);
@@ -135,6 +128,21 @@ const ProjectsSection = () => {
       ? projects
       : projects.filter((p) => p.tech_stack.includes(filter));
 
+  const filterIcon = (category: string) => {
+    if (category === 'Software' || ['Python', 'Django', 'Next.js', 'React', 'Angular', 'Flask', 'Data Science', 'Cybersecurity'].includes(category)) {
+      return <Code2 className="w-3.5 h-3.5" />;
+    }
+    if (category === 'Brochures') return <FileText className="w-3.5 h-3.5" />;
+    if (category === 'Graphic Design' || category === 'Branding' || category === 'UI/UX Design') {
+      return <Palette className="w-3.5 h-3.5" />;
+    }
+    if (category === 'Photography') return <Camera className="w-3.5 h-3.5" />;
+    if (category === 'Video Production' || category === 'Motion Graphics') {
+      return <Video className="w-3.5 h-3.5" />;
+    }
+    return <Orbit className="w-3.5 h-3.5" />;
+  };
+
   if (loading) {
     return (
       <div className="flex items-center justify-center min-h-[400px]">
@@ -145,7 +153,7 @@ const ProjectsSection = () => {
             <Satellite className="absolute inset-0 m-auto w-5 h-5 text-violet-300" />
           </div>
           <p className="mt-4 text-cyan-300 font-mono text-xs tracking-[.2em]">
-            SCANNING MISSION LOGS...
+            SCANNING PROFESSOR COMIC MISSION ARCHIVE...
           </p>
         </div>
       </div>
@@ -154,7 +162,6 @@ const ProjectsSection = () => {
 
   return (
     <div className="max-w-7xl mx-auto">
-      {/* Header */}
       <motion.div
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -164,18 +171,18 @@ const ProjectsSection = () => {
       >
         <div className="inline-flex items-center gap-2 text-violet-300 font-mono text-xs tracking-[.25em] mb-5">
           <Orbit className="w-4 h-4" />
-          MISSION ARCHIVE // NAV-03
+          MISSION ARCHIVE // PROFESSOR COMIC // NAV-03
         </div>
         <h2 className="text-4xl md:text-5xl font-bold mb-6 gradient-text">
-          Mission Archive
+          Professor Comic Mission Archive
         </h2>
         <p className="text-slate-400 text-lg max-w-3xl mx-auto">
-          A selection of my recent work showcasing different technologies and
-          approaches to solving real-world problems.
+          A visual and technical record of Professor Comic&apos;s deployed software,
+          brochure publications, graphic design, branding, UI/UX, photography,
+          video, and motion-graphics missions.
         </p>
       </motion.div>
 
-      {/* Filter Sector Panel */}
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -186,27 +193,28 @@ const ProjectsSection = () => {
         <div className="flex flex-wrap items-center gap-3 justify-center">
           <div className="flex items-center gap-2 px-4 py-2 rounded-full bg-cyan-300/5 border border-cyan-300/10">
             <Filter className="w-4 h-4 text-cyan-300" />
-            <span className="hud-label">Sector Filter</span>
+            <span className="hud-label">Mission Sector</span>
           </div>
-          {TECHNOLOGIES.map((tech) => (
+
+          {CATEGORIES.map((category) => (
             <motion.button
-              key={tech}
-              onClick={() => setFilter(tech)}
-              className={`px-4 py-2 rounded-full text-sm font-medium transition-all ${
-                filter === tech
+              key={category}
+              onClick={() => setFilter(category)}
+              className={`inline-flex items-center gap-1.5 px-4 py-2 rounded-full text-sm font-medium transition-all ${
+                filter === category
                   ? 'bg-gradient-to-r from-cyan-400 to-violet-500 text-slate-950 shadow-[0_0_20px_rgba(34,211,238,.16)]'
                   : 'bg-white/[.03] text-slate-400 border border-white/10 hover:border-violet-400/40 hover:text-violet-200'
               }`}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
-              {tech}
+              {filterIcon(category)}
+              {category}
             </motion.button>
           ))}
         </div>
       </motion.div>
 
-      {/* Telemetry Status Bar */}
       <div className="flex items-center justify-between mb-5 px-1">
         <div className="flex items-center gap-2 text-slate-500">
           <Radio className="w-4 h-4 text-cyan-300" />
@@ -219,7 +227,6 @@ const ProjectsSection = () => {
         </span>
       </div>
 
-      {/* Projects Grid */}
       <motion.div
         layout
         className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12"
@@ -246,7 +253,6 @@ const ProjectsSection = () => {
         </AnimatePresence>
       </motion.div>
 
-      {/* Empty State */}
       {filteredProjects.length === 0 && (
         <div className="space-panel p-12 text-center text-slate-400">
           No missions found in{' '}
@@ -254,21 +260,20 @@ const ProjectsSection = () => {
         </div>
       )}
 
-      {/* Footer Callout */}
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.6, delay: 0.4 }}
-        className="space-panel rounded-2xl p-8 max-w-2xl mx-auto border border-violet-400/15 text-center"
+        className="space-panel rounded-2xl p-8 max-w-3xl mx-auto border border-violet-400/15 text-center"
       >
         <Satellite className="w-7 h-7 mx-auto mb-4 text-violet-300" />
         <h3 className="text-2xl font-bold mb-4 text-white">
-          Explore the Full Mission Fleet
+          Explore the Professor Comic Fleet
         </h3>
         <p className="text-slate-400 mb-6">
-          Check out my GitHub profile for a complete collection of my open-source
-          projects and contributions.
+          Explore the complete collection of Professor Comic&apos;s software,
+          creative design, publication, and visual missions.
         </p>
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
           <motion.a
