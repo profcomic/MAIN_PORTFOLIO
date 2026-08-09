@@ -1,8 +1,16 @@
 import './globals.css'
-import { Inter } from 'next/font/google'
+import { Orbitron, Space_Grotesk } from 'next/font/google'
 import { ThemeProvider } from '@/components/ThemeProvider'
 
-const inter = Inter({ subsets: ['latin'] })
+const spaceGrotesk = Space_Grotesk({
+  subsets: ['latin'],
+  variable: '--font-space-grotesk',
+})
+
+const orbitron = Orbitron({
+  subsets: ['latin'],
+  variable: '--font-orbitron',
+})
 
 export const metadata = {
   title: 'ANTHONNEY MWANZAH - PROFESSOR',
@@ -38,7 +46,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={inter.className}>
+      <body className={`${spaceGrotesk.variable} ${orbitron.variable}`}>
         <ThemeProvider
           attribute="class"
           defaultTheme="dark"
