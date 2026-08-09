@@ -1,27 +1,67 @@
-# Professor Comice Portfolio
+# PROFESSOR COMIC
 
-A polished full-stack portfolio website built with Django for the backend and Next.js for the frontend. The experience combines a cinematic, interactive UI with a content-driven project showcase and contact flow.
+### Creative Technology • Software Engineering • Graphic Design • Visual Communication
 
-## Overview
+**Professor Comic** is a full-stack personal portfolio and creative technology showcase built to present software systems, digital products, brochures, graphic design, branding, UI/UX work, photography, video production, and motion graphics in one immersive experience.
 
-This project is designed as a personal portfolio with:
-- a modern one-page experience
-- animated sections and ambient visual effects
-- a dynamic projects showcase
-- a lightweight API layer for portfolio content and contact handling
+The portfolio combines a cinematic space-inspired interface with a content-driven project archive and contact experience.
 
-## Features
+## 🌌 Portfolio Mission
 
-- Responsive, immersive landing page experience
-- Animated navigation, particle effects, and cursor trails
-- Theme-friendly visual system with glassmorphism-inspired styling
-- Project cards and portfolio content driven by the backend
-- Contact form endpoint for submissions
+The mission of this portfolio is to bring together the different sides of **Professor Comic** — developer, designer, creative technologist, and visual storyteller — without separating technical work from creative work.
+
+The **Mission Archive** is designed to showcase:
+
+- 🚀 Software and web applications
+- 📖 Brochures and company-profile publications
+- 🎨 Graphic design and promotional artwork
+- 🟣 Branding and visual identity
+- 🖥️ UI/UX design
+- 📸 Photography
+- 🎬 Video production
+- ✨ Motion graphics
+- 🐍 Python and Django systems
+- ⚛️ React, Next.js, Angular and TypeScript projects
+- 🔐 Data science and cybersecurity work
+
+## ✨ Core Features
+
+- Responsive one-page portfolio experience
+- Space-inspired visual interface with cyan, deep-space and violet accents
+- Centered orbital navigation
+- Animated sections and ambient particle effects
+- Cursor trail and scroll-progress systems
+- Dynamic Mission Archive with category filters
+- Software and creative-work project cards
+- Brochure and visual-design project support
+- Backend-powered portfolio content
+- Contact form API
 - GitHub status integration support
+- Responsive desktop, tablet and mobile layouts
 
-## Tech Stack
+## 🛰️ Mission Archive Categories
+
+The project showcase is organized into mission sectors so visitors can quickly explore different areas of Professor Comic's work:
+
+| Sector | Focus |
+|---|---|
+| Software | Web applications, platforms and digital systems |
+| Brochures | Company profiles, product brochures and publication design |
+| Graphic Design | Posters, promotional graphics and digital artwork |
+| Branding | Brand identity and visual communication |
+| UI/UX Design | Interfaces, user journeys and product experiences |
+| Photography | Photography and visual documentation |
+| Video Production | Video and audiovisual production |
+| Motion Graphics | Animated visual communication |
+| Python / Django | Python-based systems and web applications |
+| Next.js / React / Angular | Modern frontend applications |
+| Data Science | Data-focused projects and analysis |
+| Cybersecurity | Security-focused technical work |
+
+## 🛠️ Technology Stack
 
 ### Frontend
+
 - Next.js 14
 - React 18
 - TypeScript
@@ -31,16 +71,17 @@ This project is designed as a personal portfolio with:
 - next-themes
 
 ### Backend
+
 - Django
 - Django REST Framework
 - django-cors-headers
 - Pillow
 - requests
 
-## Project Structure
+## 📁 Project Structure
 
 ```text
-main_portfolio/
+MAIN_PORTFOLIO/
 ├── backend/
 │   └── professor/
 │       ├── manage.py
@@ -54,17 +95,30 @@ main_portfolio/
 │           ├── views.py
 │           ├── urls.py
 │           └── management/
+│
 ├── frontend/
 │   ├── app/
 │   ├── components/
+│   ├── public/
+│   │   ├── images/
+│   │   │   └── projects/
+│   │   │       ├── software/
+│   │   │       ├── brochures/
+│   │   │       ├── graphic-design/
+│   │   │       ├── branding/
+│   │   │       └── visual-media/
+│   │   └── documents/
+│   │       └── brochures/
 │   ├── types/
 │   └── package.json
+│
 └── README.md
 ```
 
-## Getting Started
+## 🚀 Getting Started
 
 ### Prerequisites
+
 - Node.js 18+
 - Python 3.10+
 - npm or yarn
@@ -72,83 +126,160 @@ main_portfolio/
 
 ### Backend Setup
 
-1. Open the backend folder:
 ```bash
 cd backend/professor
 ```
 
-2. Create and activate a virtual environment:
+Create and activate a virtual environment:
+
 ```bash
 python -m venv venv
+```
 
-# Windows
-venv\Scripts\activate
+**Windows:**
 
-# macOS/Linux
+```bash
+venv\\Scripts\\activate
+```
+
+**macOS/Linux:**
+
+```bash
 source venv/bin/activate
 ```
 
-3. Install Python dependencies:
+Install dependencies:
+
 ```bash
 pip install -r ../requirements.txt
 ```
 
-4. Apply database migrations:
+Apply migrations:
+
 ```bash
 python manage.py migrate
 ```
 
-5. Optionally create sample project data:
+Optionally create sample project data:
+
 ```bash
 python manage.py create_sample_projects
 ```
 
-6. Start the Django server:
+Start Django:
+
 ```bash
 python manage.py runserver
 ```
 
-The backend API will run at http://127.0.0.1:8000.
+The backend API runs at:
+
+```text
+http://127.0.0.1:8000
+```
 
 ### Frontend Setup
 
-1. Open the frontend folder:
+Open a second terminal:
+
 ```bash
 cd frontend
-```
-
-2. Install dependencies:
-```bash
 npm install
-```
-
-3. Start the development server:
-```bash
 npm run dev
 ```
 
-The frontend will be available at http://localhost:3000.
+The frontend runs at:
 
-## API Endpoints
+```text
+http://localhost:3000
+```
 
-- GET /api/projects/ — list portfolio projects
-- POST /api/contact/ — submit a contact form message
-- GET /api/github-status/ — return GitHub statistics data
+## 📡 API Endpoints
 
-## Customization
+- `GET /api/projects/` — list portfolio projects
+- `POST /api/contact/` — submit a contact message
+- `GET /api/github-status/` — return GitHub statistics data
 
-You can personalize the portfolio by updating:
-- [frontend/components/Hero.tsx](frontend/components/Hero.tsx) for your intro and links
-- [frontend/components/About.tsx](frontend/components/About.tsx) for your bio and experience
-- [frontend/components/Contact.tsx](frontend/components/Contact.tsx) for your contact details
-- the Django project data in the admin panel or through the project API
+## 🖼️ Adding Brochures and Design Work
 
-## Notes
+Creative assets belong in the frontend public directory so they can be served directly by Next.js.
 
-- The current frontend uses a custom sci-fi inspired visual language and animated layout.
-- The backend currently exposes the project and contact endpoints while leaving room for further expansion.
-- If you want to switch the GitHub integration to your own profile, update the username in the backend view logic.
+Recommended structure:
 
-## License
+```text
+frontend/public/
+├── images/
+│   └── projects/
+│       ├── brochures/
+│       │   └── tgg-carry-deck-crane/
+│       │       ├── cover.jpg
+│       │       ├── page-2.jpg
+│       │       ├── page-3.jpg
+│       │       └── page-4.jpg
+│       ├── graphic-design/
+│       ├── branding/
+│       └── visual-media/
+│
+└── documents/
+    └── brochures/
+        └── TGG-Carry-Deck-Crane.pdf
+```
 
-This project is provided as a personal portfolio template and can be adapted for your own use.
+For example, an image can be referenced from a component with:
+
+```tsx
+<Image
+  src="/images/projects/brochures/tgg-carry-deck-crane/cover.jpg"
+  alt="TGG Carry Deck Crane brochure"
+  width={800}
+  height={600}
+/>
+```
+
+## 🎨 Professor Comic Identity
+
+The portfolio should consistently use **Professor Comic** as the primary identity.
+
+The space interface is a presentation layer — the actual portfolio identity remains **Professor Comic**.
+
+Use the identity consistently across:
+
+- Page titles
+- Mission Archive
+- Hero section
+- Footer
+- README
+- Project descriptions
+- Creative-work credits
+
+## 🔧 Customization
+
+Key areas can be personalized in:
+
+- `frontend/components/Hero.tsx` — introduction and primary identity
+- `frontend/components/About.tsx` — profile, experience and capabilities
+- `frontend/components/ProjectsSection.tsx` — Mission Archive categories and project presentation
+- `frontend/components/ProjectCard.tsx` — individual project-card presentation
+- `frontend/components/Contact.tsx` — communication details
+- Django project data — portfolio projects and backend content
+
+## 🌠 Design Direction
+
+The interface uses a deep-space visual language with:
+
+- near-black cosmic backgrounds
+- cyan orbital highlights
+- blue atmospheric glow
+- violet/purple nebula accents
+- glassmorphism panels
+- animated particles
+- orbital terminology
+- HUD-inspired information labels
+
+The intention is to make the portfolio feel like a **personal command deck for Professor Comic's technical and creative missions** while remaining readable and professional.
+
+## 📜 License
+
+This repository represents the personal portfolio and creative work of **Professor Comic**.
+
+© Professor Comic. All rights reserved.
