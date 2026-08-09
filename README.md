@@ -1,4 +1,4 @@
-# Nexus Lab Portfolio
+# Professor Comice Portfolio
 
 A polished full-stack portfolio website built with Django for the backend and Next.js for the frontend. The experience combines a cinematic, interactive UI with a content-driven project showcase and contact flow.
 
