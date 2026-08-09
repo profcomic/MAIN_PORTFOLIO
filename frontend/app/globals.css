@@ -2,6 +2,8 @@
 @tailwind components;
 @tailwind utilities;
 
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap');
+
 @layer base {
   :root { --background:230 60% 4%; --foreground:210 40% 98%; --card:230 45% 8%; --card-foreground:210 40% 98%; --popover:230 45% 8%; --popover-foreground:210 40% 98%; --primary:191 100% 50%; --primary-foreground:230 60% 4%; --secondary:260 55% 16%; --secondary-foreground:210 40% 98%; --muted:230 25% 16%; --muted-foreground:215 20% 70%; --accent:278 90% 65%; --accent-foreground:210 40% 98%; --destructive:0 84% 60%; --destructive-foreground:210 40% 98%; --border:220 35% 22%; --input:220 35% 18%; --ring:191 100% 50%; --radius:.75rem; }
   html { scroll-behavior:smooth; background:#02030a; }
