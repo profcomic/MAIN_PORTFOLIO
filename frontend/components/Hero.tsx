@@ -44,21 +44,21 @@ const Hero: React.FC = () => {
   ];
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center px-6 py-20 overflow-hidden">
+    <section className="relative min-h-screen flex items-center justify-center px-4 sm:px-6 py-16 sm:py-20 overflow-hidden">
       <div className="absolute inset-0">
         <div className="absolute -top-32 -left-32 w-96 h-96 bg-cyan-400/10 rounded-full blur-3xl" />
         <div className="absolute bottom-20 right-20 w-96 h-96 bg-violet-500/15 rounded-full blur-3xl" />
       </div>
 
-      <div className="relative z-10 max-w-6xl w-full">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+      <div className="relative z-10 max-w-5xl w-full">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-10 items-center">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
             className="text-center lg:text-left"
           >
-            <div className="inline-flex mb-8 space-panel rounded-lg overflow-hidden border border-cyan-300/15">
+            <div className="inline-flex mb-7 space-panel rounded-lg overflow-hidden border border-cyan-300/15">
               <div className="w-full">
                 <div className="bg-slate-900/70 px-4 py-2 flex items-center gap-2 border-b border-white/10">
                   <div className="w-3 h-3 bg-red-500 rounded-full" />
@@ -69,7 +69,7 @@ const Hero: React.FC = () => {
                   </span>
                 </div>
 
-                <div className="p-6 font-mono text-left">
+                <div className="p-5 sm:p-6 font-mono text-left">
                   <p className="text-cyan-300 text-sm mb-2">$ whoami</p>
                   <h1 className="text-3xl md:text-5xl font-bold mb-4 text-white">
                     ANTHONNEY MWANZAH
@@ -79,7 +79,7 @@ const Hero: React.FC = () => {
                  </h5>
                   <p className="text-cyan-300 text-lg mb-2">$ describe --role</p>
                   <p className="text-slate-200 text-xl md:text-2xl leading-relaxed mb-6">
-                    Space Enthusiast | Fullstack Developer | Creative Professional | Digital Ambassador | Orchestrator | Space Enthusiast 
+                    Space Enthusiast | Fullstack Developer | Creative Professional | Digital Ambassador | Orchestrator | Space Enthusiast
                     | AI-VR Enthusiast |
                   </p>
                   <p className="text-cyan-300 text-sm mb-2">$ describe --stack</p>
@@ -125,8 +125,8 @@ const Hero: React.FC = () => {
               className="space-y-6"
             >
               <p className="text-slate-400 text-lg max-w-2xl mx-auto">
-                A relentless problem-solver dedicated to turning complex challenges into 
-                simple, intuitive solutions. Expert in architecting scalable systems 
+                A relentless problem-solver dedicated to turning complex challenges into
+                simple, intuitive solutions. Expert in architecting scalable systems
                 and exploring the frontiers of Space-Tech and AI.
               </p>
 
@@ -176,8 +176,8 @@ const Hero: React.FC = () => {
             transition={{ duration: 0.8, delay: 0.3 }}
             className="flex justify-center lg:justify-end relative"
           >
-            <div className="absolute w-[340px] h-[340px] rounded-full border border-cyan-300/10 animate-[spin_30s_linear_infinite]" />
-            <div className="absolute w-[420px] h-[420px] rounded-full border border-violet-400/10 border-dashed animate-[spin_50s_linear_infinite_reverse]" />
+            <div className="absolute w-[280px] h-[280px] sm:w-[320px] sm:h-[320px] rounded-full border border-cyan-300/10 animate-[spin_30s_linear_infinite]" />
+            <div className="absolute w-[350px] h-[350px] sm:w-[390px] sm:h-[390px] rounded-full border border-violet-400/10 border-dashed animate-[spin_50s_linear_infinite_reverse]" />
             <ProfileImage />
           </motion.div>
         </div>
