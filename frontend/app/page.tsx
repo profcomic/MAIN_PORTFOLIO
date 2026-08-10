@@ -85,7 +85,7 @@ export default function HomePage() {
   ];
 
   return (
-    <div className="min-h-screen bg-[#02030a] text-slate-100 overflow-x-hidden selection:bg-violet-400/30 selection:text-white">
+    <div className="min-h-screen bg-transparent text-slate-100 overflow-x-hidden selection:bg-violet-400/30 selection:text-white">
       <BackgroundBlobs />
       <ParticleBackground />
       <CursorTrail />
