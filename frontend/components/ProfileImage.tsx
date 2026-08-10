@@ -15,11 +15,9 @@ export default function ProfileImage({ className = '' }: ProfileImageProps) {
       transition={{ duration: 0.8, delay: 0.4 }}
       className={`relative ${className}`}
     >
-      <div className="relative w-48 h-48 md:w-64 md:h-64">
-        {/* Glowing aura background */}
+      <div className="relative w-40 h-40 sm:w-48 sm:h-48 md:w-64 md:h-64">
         <div className="absolute -inset-3 rounded-full bg-gradient-to-r from-cyan-400 via-violet-500 to-fuchsia-500 blur-lg opacity-50 animate-pulse" />
 
-        {/* Profile Image container */}
         <motion.div
           whileHover={{ scale: 1.05, rotate: 2 }}
           transition={{ type: 'spring', stiffness: 300 }}
@@ -38,7 +36,6 @@ export default function ProfileImage({ className = '' }: ProfileImageProps) {
             }}
           />
 
-          {/* Fallback avatar */}
           <div className="hidden w-full h-full bg-gradient-to-br from-slate-900 via-violet-900 to-cyan-900 items-center justify-center">
             <div className="text-white text-center p-4">
               <div className="text-6xl mb-2">👨‍💻</div>
@@ -50,7 +47,6 @@ export default function ProfileImage({ className = '' }: ProfileImageProps) {
           <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent" />
         </motion.div>
 
-        {/* Orbiting particles */}
         {[...Array(3)].map((_, i) => (
           <motion.div
             key={i}
