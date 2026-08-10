@@ -184,6 +184,19 @@
   }
 }
 
+/* Compact command-deck sizing: keeps the entire portfolio visually centered
+   and proportioned like the supplied reference instead of stretching across
+   wide desktop displays. The layout remains responsive on smaller screens. */
+@layer utilities {
+  .max-w-6xl {
+    max-width: 1080px !important;
+  }
+
+  .max-w-7xl {
+    max-width: 1080px !important;
+  }
+}
+
 @keyframes star-drift {
   from { transform: translate3d(0,0,0); }
   to { transform: translate3d(-40px,30px,0); }
