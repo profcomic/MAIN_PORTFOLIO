@@ -1,15 +1,23 @@
 import './globals.css'
-import { Orbitron, Space_Grotesk } from 'next/font/google'
+import { Michroma, Orbitron, Share_Tech_Mono } from 'next/font/google'
 import { ThemeProvider } from '@/components/ThemeProvider'
 
-const spaceGrotesk = Space_Grotesk({
+const michroma = Michroma({
   subsets: ['latin'],
-  variable: '--font-space-grotesk',
+  variable: '--font-michroma',
+  weight: '400',
 })
 
 const orbitron = Orbitron({
   subsets: ['latin'],
   variable: '--font-orbitron',
+  weight: ['400', '500', '600', '700'],
+})
+
+const shareTechMono = Share_Tech_Mono({
+  subsets: ['latin'],
+  variable: '--font-share-tech-mono',
+  weight: '400',
 })
 
 export const metadata = {
@@ -46,7 +54,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={`${spaceGrotesk.variable} ${orbitron.variable}`}>
+      <body className={`${michroma.variable} ${orbitron.variable} ${shareTechMono.variable}`}>
         <ThemeProvider
           attribute="class"
           defaultTheme="dark"
