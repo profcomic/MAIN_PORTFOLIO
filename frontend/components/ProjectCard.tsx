@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Project } from '@/types';
 import {
@@ -68,6 +69,7 @@ const getProjectLogo = (title: string, techStack: string[]) => {
 
 export default function ProjectCard({ project, className }: Props) {
   const logo = getProjectLogo(project.title, project.tech_stack);
+  const [imageError, setImageError] = useState(false);
 
   return (
     <motion.div
@@ -87,6 +89,16 @@ export default function ProjectCard({ project, className }: Props) {
             backgroundSize: '28px 28px',
           }}
         />
+
+        {project.image && !imageError && (
+          <img
+            src={project.image}
+            alt={`${project.title} preview`}
+            className="absolute inset-0 h-full w-full object-cover"
+            onError={() => setImageError(true)}
+          />
+        )}
+        <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-slate-950/20 to-transparent" />
 
         {/* Orbit animations & Logo Icon */}
         <div className="absolute inset-0 flex items-center justify-center">
