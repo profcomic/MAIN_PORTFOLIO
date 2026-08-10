@@ -29,6 +29,8 @@
   html {
     scroll-behavior: smooth;
     background: #010207;
+    width: 100%;
+    overflow-x: hidden;
   }
 
   body {
@@ -47,12 +49,13 @@
       linear-gradient(115deg, #010207 0%, #020514 38%, #03020c 68%, #010207 100%);
     background-attachment: fixed;
     min-height: 100vh;
+    min-width: 0;
+    width: 100%;
     overflow-x: hidden;
     position: relative;
     isolation: isolate;
   }
 
-  /* Cinematic starfield + violet/cyan nebula inspired by the supplied reference. */
   body::before {
     content: '';
     position: fixed;
@@ -68,7 +71,6 @@
     opacity: .95;
   }
 
-  /* Large planetary limb on the right side, recreating the reference composition. */
   body::after {
     content: '';
     position: fixed;
@@ -126,6 +128,7 @@
   * {
     scrollbar-width: thin;
     scrollbar-color: rgba(34, 211, 238, .45) rgba(2, 3, 10, .8);
+    box-sizing: border-box;
   }
 
   *::-webkit-scrollbar {
@@ -184,9 +187,6 @@
   }
 }
 
-/* Compact command-deck sizing: keeps the entire portfolio visually centered
-   and proportioned like the supplied reference instead of stretching across
-   wide desktop displays. The layout remains responsive on smaller screens. */
 @layer utilities {
   .max-w-6xl {
     max-width: 1080px !important;
@@ -194,6 +194,66 @@
 
   .max-w-7xl {
     max-width: 1080px !important;
+  }
+}
+
+/* Phone layout: preserve the command-deck look without requiring landscape
+   orientation, pinch-zoom, or horizontal scrolling. */
+@media (max-width: 640px) {
+  html, body {
+    max-width: 100%;
+    overflow-x: hidden;
+  }
+
+  body {
+    background-attachment: scroll;
+  }
+
+  body::after {
+    width: 125vw;
+    height: 125vw;
+    right: -55vw;
+    bottom: -63vw;
+    opacity: .72;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    letter-spacing: .035em;
+    overflow-wrap: anywhere;
+  }
+
+  .space-nav {
+    letter-spacing: 0;
+  }
+
+  .space-nav a {
+    min-width: 0;
+    overflow: hidden;
+  }
+
+  .space-nav a > span:nth-child(2) {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    max-width: 100%;
+  }
+
+  .space-panel {
+    max-width: 100%;
+  }
+
+  section {
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 380px) {
+  .space-nav a > span:nth-child(2) {
+    font-size: 7px !important;
+  }
+
+  body::after {
+    opacity: .58;
   }
 }
 
