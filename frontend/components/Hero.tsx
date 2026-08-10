@@ -26,90 +26,57 @@ const Hero: React.FC = () => {
   }, []);
 
   const socialLinks = [
-    {
-      icon: Github,
-      href: 'https://github.com/profcomic',
-      label: 'GitHub',
-    },
-    {
-      icon: Linkedin,
-      href: 'https://linkedin.com/in/anthonney-mwanzah-432977354',
-      label: 'LinkedIn',
-    },
-    {
-      icon: Mail,
-      href: 'mailto:professorcomic1@gmail.com',
-      label: 'Email',
-    },
+    { icon: Github, href: 'https://github.com/profcomic', label: 'GitHub' },
+    { icon: Linkedin, href: 'https://linkedin.com/in/anthonney-mwanzah-432977354', label: 'LinkedIn' },
+    { icon: Mail, href: 'mailto:professorcomic1@gmail.com', label: 'Email' },
   ];
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center px-4 sm:px-6 py-16 sm:py-20 overflow-hidden">
-      <div className="absolute inset-0">
-        <div className="absolute -top-32 -left-32 w-96 h-96 bg-cyan-400/10 rounded-full blur-3xl" />
-        <div className="absolute bottom-20 right-20 w-96 h-96 bg-violet-500/15 rounded-full blur-3xl" />
+    <section className="relative min-h-screen w-full max-w-full flex items-center justify-center px-3 sm:px-6 py-20 sm:py-16 overflow-hidden">
+      <div className="absolute inset-0 pointer-events-none">
+        <div className="absolute -top-32 -left-32 w-72 sm:w-96 h-72 sm:h-96 bg-cyan-400/10 rounded-full blur-3xl" />
+        <div className="absolute bottom-20 right-[-5rem] sm:right-20 w-72 sm:w-96 h-72 sm:h-96 bg-violet-500/15 rounded-full blur-3xl" />
       </div>
 
-      <div className="relative z-10 max-w-5xl w-full">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-10 items-center">
+      <div className="relative z-10 w-full max-w-5xl min-w-0">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-10 items-center min-w-0">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
-            className="text-center lg:text-left"
+            className="min-w-0 text-center lg:text-left"
           >
-            <div className="inline-flex mb-7 space-panel rounded-lg overflow-hidden border border-cyan-300/15">
-              <div className="w-full">
-                <div className="bg-slate-900/70 px-4 py-2 flex items-center gap-2 border-b border-white/10">
-                  <div className="w-3 h-3 bg-red-500 rounded-full" />
-                  <div className="w-3 h-3 bg-yellow-500 rounded-full" />
-                  <div className="w-3 h-3 bg-green-500 rounded-full" />
-                  <span className="ml-4 text-xs font-mono text-slate-400">
+            <div className="inline-flex w-full max-w-full sm:max-w-none mb-7 space-panel rounded-lg overflow-hidden border border-cyan-300/15 text-left">
+              <div className="w-full min-w-0">
+                <div className="bg-slate-900/70 px-3 sm:px-4 py-2 flex items-center gap-2 border-b border-white/10 min-w-0">
+                  <div className="w-2.5 h-2.5 sm:w-3 sm:h-3 bg-red-500 rounded-full shrink-0" />
+                  <div className="w-2.5 h-2.5 sm:w-3 sm:h-3 bg-yellow-500 rounded-full shrink-0" />
+                  <div className="w-2.5 h-2.5 sm:w-3 sm:h-3 bg-green-500 rounded-full shrink-0" />
+                  <span className="ml-1 sm:ml-4 min-w-0 truncate text-[9px] sm:text-xs font-mono text-slate-400">
                     portfolio.ts — orbital command deck
                   </span>
                 </div>
 
-                <div className="p-5 sm:p-6 font-mono text-left">
-                  <p className="text-cyan-300 text-sm mb-2">$ whoami</p>
-                  <h1 className="text-3xl md:text-5xl font-bold mb-4 text-white">
+                <div className="p-4 sm:p-6 font-mono text-left min-w-0">
+                  <p className="text-cyan-300 text-xs sm:text-sm mb-2">$ whoami</p>
+                  <h1 className="text-2xl sm:text-3xl md:text-5xl font-bold mb-4 text-white break-words">
                     ANTHONNEY MWANZAH
                   </h1>
-                  <h5 className="text-slate-300 text-lg md:text-xl leading-relaxed mb-6">
+                  <h5 className="text-slate-300 text-base sm:text-lg md:text-xl leading-relaxed mb-6">
                     Nerd by Nature. Human by Design.
-                 </h5>
-                  <p className="text-cyan-300 text-lg mb-2">$ describe --role</p>
-                  <p className="text-slate-200 text-xl md:text-2xl leading-relaxed mb-6">
-                    Space Enthusiast | Fullstack Developer | Creative Professional | Digital Ambassador | Orchestrator | Space Enthusiast
-                    | AI-VR Enthusiast |
+                  </h5>
+                  <p className="text-cyan-300 text-sm sm:text-lg mb-2">$ describe --role</p>
+                  <p className="text-slate-200 text-base sm:text-xl md:text-2xl leading-relaxed mb-6 break-words">
+                    Space Enthusiast | Fullstack Developer | Creative Professional | Digital Ambassador | Orchestrator | Space Enthusiast | AI-VR Enthusiast |
                   </p>
-                  <p className="text-cyan-300 text-sm mb-2">$ describe --stack</p>
-                  <p className="text-slate-300 text-lg md:text-xl leading-relaxed mb-6">
+                  <p className="text-cyan-300 text-xs sm:text-sm mb-2">$ describe --stack</p>
+                  <p className="text-slate-300 text-sm sm:text-lg md:text-xl leading-relaxed mb-6 break-words">
                     {text}
-                    <span
-                      className={`inline-block w-0.5 h-5 bg-cyan-300 ml-1 ${
-                        cursorVisible ? 'opacity-100' : 'opacity-0'
-                      }`}
-                    />
+                    <span className={`inline-block w-0.5 h-4 sm:h-5 bg-cyan-300 ml-1 ${cursorVisible ? 'opacity-100' : 'opacity-0'}`} />
                   </p>
-                  <div className="flex flex-wrap gap-2">
-                    {[
-                      'Django',
-                      'Next.js',
-                      'Angular',
-                      'Python',
-                      'TypeScript',
-                      'Graphic Design',
-                      'Data Science',
-                      'Cybersecurity',
-                      'AI & ML',
-                      'VR/AR Development',
-                      'Space-Tech',
-                      'Video Editing',
-                    ].map((x) => (
-                      <span
-                        key={x}
-                        className="px-3 py-1 rounded-md text-sm font-medium bg-cyan-400/5 border border-cyan-300/15 text-cyan-200"
-                      >
+                  <div className="flex flex-wrap gap-1.5 sm:gap-2">
+                    {['Django','Next.js','Angular','Python','TypeScript','Graphic Design','Data Science','Cybersecurity','AI & ML','VR/AR Development','Space-Tech','Video Editing'].map((x) => (
+                      <span key={x} className="px-2 sm:px-3 py-1 rounded-md text-[10px] sm:text-sm font-medium bg-cyan-400/5 border border-cyan-300/15 text-cyan-200 break-words">
                         {x}
                       </span>
                     ))}
@@ -124,45 +91,22 @@ const Hero: React.FC = () => {
               transition={{ delay: 0.6, duration: 0.6 }}
               className="space-y-6"
             >
-              <p className="text-slate-400 text-lg max-w-2xl mx-auto">
-                A relentless problem-solver dedicated to turning complex challenges into
-                simple, intuitive solutions. Expert in architecting scalable systems
-                and exploring the frontiers of Space-Tech and AI.
+              <p className="text-slate-400 text-base sm:text-lg max-w-2xl mx-auto leading-relaxed">
+                A relentless problem-solver dedicated to turning complex challenges into simple, intuitive solutions. Expert in architecting scalable systems and exploring the frontiers of Space-Tech and AI.
               </p>
 
-              <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-                <motion.a
-                  href="#projects"
-                  className="px-8 py-3 bg-gradient-to-r from-cyan-400 to-violet-500 text-slate-950 rounded-lg font-medium shadow-lg"
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                >
+              <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center items-stretch sm:items-center">
+                <motion.a href="#projects" className="px-6 sm:px-8 py-3 bg-gradient-to-r from-cyan-400 to-violet-500 text-slate-950 rounded-lg font-medium text-center" whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
                   View My Work
                 </motion.a>
-                <motion.a
-                  href="#contact"
-                  className="px-8 py-3 border border-white/10 text-slate-300 rounded-lg font-medium"
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                >
+                <motion.a href="#contact" className="px-6 sm:px-8 py-3 border border-white/10 text-slate-300 rounded-lg font-medium text-center" whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
                   Get In Touch
                 </motion.a>
               </div>
 
-              <div className="flex justify-center gap-4 pt-4">
+              <div className="flex justify-center gap-4 pt-2 sm:pt-4">
                 {socialLinks.map((link, index) => (
-                  <motion.a
-                    key={link.label}
-                    href={link.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="p-3 rounded-full bg-slate-900 text-slate-400 hover:text-cyan-300"
-                    initial={{ opacity: 0, scale: 0 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    transition={{ delay: 0.8 + index * 0.1 }}
-                    whileHover={{ scale: 1.1 }}
-                    whileTap={{ scale: 0.9 }}
-                  >
+                  <motion.a key={link.label} href={link.href} target="_blank" rel="noopener noreferrer" className="p-3 rounded-full bg-slate-900 text-slate-400 hover:text-cyan-300" initial={{ opacity: 0, scale: 0 }} animate={{ opacity: 1, scale: 1 }} transition={{ delay: 0.8 + index * 0.1 }} whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }}>
                     <link.icon className="w-5 h-5" />
                   </motion.a>
                 ))}
@@ -174,20 +118,15 @@ const Hero: React.FC = () => {
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.8, delay: 0.3 }}
-            className="flex justify-center lg:justify-end relative"
+            className="flex justify-center lg:justify-end relative min-w-0 py-8 sm:py-0"
           >
-            <div className="absolute w-[280px] h-[280px] sm:w-[320px] sm:h-[320px] rounded-full border border-cyan-300/10 animate-[spin_30s_linear_infinite]" />
-            <div className="absolute w-[350px] h-[350px] sm:w-[390px] sm:h-[390px] rounded-full border border-violet-400/10 border-dashed animate-[spin_50s_linear_infinite_reverse]" />
+            <div className="absolute w-[220px] h-[220px] sm:w-[280px] sm:h-[280px] rounded-full border border-cyan-300/10 animate-[spin_30s_linear_infinite]" />
+            <div className="absolute w-[270px] h-[270px] sm:w-[350px] sm:h-[350px] rounded-full border border-violet-400/10 border-dashed animate-[spin_50s_linear_infinite_reverse]" />
             <ProfileImage />
           </motion.div>
         </div>
 
-        <motion.a
-          href="#about"
-          className="absolute bottom-8 left-1/2 -translate-x-1/2 text-slate-500 hover:text-cyan-300"
-          animate={{ y: [0, 10, 0] }}
-          transition={{ duration: 2, repeat: Infinity }}
-        >
+        <motion.a href="#about" className="absolute bottom-4 sm:bottom-8 left-1/2 -translate-x-1/2 text-slate-500 hover:text-cyan-300" animate={{ y: [0, 10, 0] }} transition={{ duration: 2, repeat: Infinity }}>
           <ArrowDown className="w-6 h-6" />
         </motion.a>
       </div>
