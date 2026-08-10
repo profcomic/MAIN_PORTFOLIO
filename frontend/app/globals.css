@@ -2,8 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-@import url('https://fonts.googleapis.com/css2?family=Michroma&family=Orbitron:wght@400;500;600;700&family=Share+Tech+Mono&display=swap');
-
 @layer base {
   :root {
     --background: 228 60% 2%;
@@ -51,9 +49,10 @@
     min-height: 100vh;
     overflow-x: hidden;
     position: relative;
+    isolation: isolate;
   }
 
-  /* Cinematic starfield + violet/cyan nebula inspired by the reference background. */
+  /* Cinematic starfield + violet/cyan nebula inspired by the supplied reference. */
   body::before {
     content: '';
     position: fixed;
