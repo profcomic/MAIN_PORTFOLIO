@@ -75,9 +75,9 @@ export default function HomePage() {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: -90, scale: 0.85 }}
             transition={{ type: 'spring', stiffness: 280, damping: 24 }}
-            className="fixed top-2 sm:top-4 left-1/2 -translate-x-1/2 z-50 w-[calc(100%-0.75rem)] sm:w-[calc(100%-1rem)] max-w-[1200px]"
+            className="fixed top-2 sm:top-4 left-1/2 -translate-x-1/2 z-50 w-[calc(100%-0.75rem)] sm:w-[calc(100%-1rem)] max-w-[1100px]"
           >
-            <nav aria-label="Orbital navigation" className="flex w-full min-w-0 items-center justify-center gap-1 sm:gap-2 md:gap-4 p-1.5 sm:p-2 md:p-3 bg-slate-950/80 backdrop-blur-2xl rounded-2xl border border-cyan-300/15 shadow-[0_0_50px_rgba(34,211,238,.08)]">
+            <nav aria-label="Orbital navigation" className="flex w-full min-w-0 items-center justify-center gap-1 sm:gap-2 md:gap-3 p-1.5 sm:p-2 md:p-3 bg-slate-950/80 backdrop-blur-2xl rounded-2xl border border-cyan-300/15 shadow-[0_0_50px_rgba(34,211,238,.08)]">
               <div className="hidden 2xl:flex items-center gap-2 px-3 py-2 border-r border-white/10 shrink-0">
                 <div className="relative w-7 h-7 rounded-full border border-cyan-300/50 flex items-center justify-center">
                   <span className="w-2 h-2 rounded-full bg-cyan-300 shadow-[0_0_12px_rgba(103,232,249,.9)]" />
@@ -89,7 +89,7 @@ export default function HomePage() {
                 </div>
               </div>
 
-              <div className="grid w-full min-w-0 flex-1 grid-cols-4 gap-0.5 sm:gap-1 md:gap-2 overflow-visible space-nav">
+              <div className="grid w-full max-w-[1000px] min-w-0 flex-1 mx-auto grid-cols-4 gap-0.5 sm:gap-1 md:gap-2 overflow-visible space-nav">
                 {navItems.map((item) => (
                   <motion.a
                     key={item.id}
@@ -98,7 +98,7 @@ export default function HomePage() {
                     whileTap={{ scale: 0.96 }}
                     aria-current={activeSection === item.id ? 'page' : undefined}
                     title={`${item.status} // ${item.code}`}
-                    className={`min-w-0 w-full flex items-center justify-center gap-1 sm:gap-1.5 md:gap-2 px-1 sm:px-1.5 md:px-3 lg:px-4 py-2 sm:py-2.5 rounded-xl transition-all ${activeSection === item.id ? 'bg-gradient-to-r from-cyan-400/15 via-sky-400/10 to-violet-500/20 text-cyan-200 border border-cyan-300/20 shadow-[0_0_24px_rgba(34,211,238,.08)]' : 'text-slate-400 hover:text-white hover:bg-white/5'}`}
+                    className={`min-w-0 w-full flex items-center justify-center gap-1 sm:gap-1.5 md:gap-2 px-1 sm:px-1.5 md:px-2 lg:px-3 py-2 sm:py-2.5 rounded-xl transition-all ${activeSection === item.id ? 'bg-gradient-to-r from-cyan-400/15 via-sky-400/10 to-violet-500/20 text-cyan-200 border border-cyan-300/20 shadow-[0_0_24px_rgba(34,211,238,.08)]' : 'text-slate-400 hover:text-white hover:bg-white/5'}`}
                   >
                     <span className="shrink-0 text-[10px] sm:text-xs md:text-sm">{item.icon}</span>
                     <span className="font-semibold text-[7px] min-[480px]:text-[8px] sm:text-[9px] md:text-[10px] lg:text-xs xl:text-sm whitespace-nowrap min-w-0">{item.label}</span>
