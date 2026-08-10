@@ -74,7 +74,7 @@ const ProjectsSection = () => {
               'A collaborative task management application with real-time updates, drag-and-drop functionality, and team collaboration features.',
             tech_stack: ['Software', 'Django', 'Python'],
             github_url: 'https://github.com/profcomic/FLOQPULSE',
-            live_demo: 'https://floqpulse.com',
+            live_demo: 'https://floqpulse.onrender.com/',
             image:
               'https://api.microlink.io/?url=https://github.com/profcomic/FLOQPULSE/&screenshot=true&embed=screenshot.url',
           },
